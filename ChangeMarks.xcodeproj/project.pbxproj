@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BDA650CC1A0406BD005BBC5E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA650CB1A0406BD005BBC5E /* AppKit.framework */; };
+		BDA650CE1A0406BD005BBC5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA650CD1A0406BD005BBC5E /* Foundation.framework */; };
+		BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */; };
+		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeMarks.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDA650CB1A0406BD005BBC5E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		BDA650CD1A0406BD005BBC5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		BDA650D11A0406BD005BBC5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ChangeMarks.xcscheme; path = ChangeMarks.xcodeproj/xcshareddata/xcschemes/ChangeMarks.xcscheme; sourceTree = SOURCE_ROOT; };
+		BDA650D41A0406BD005BBC5E /* ChangeMarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeMarks.h; sourceTree = "<group>"; };
+		BDA650D51A0406BD005BBC5E /* ChangeMarks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarks.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BDA650C61A0406BD005BBC5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDA650CC1A0406BD005BBC5E /* AppKit.framework in Frameworks */,
+				BDA650CE1A0406BD005BBC5E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BDA650BF1A0406BD005BBC5E = {
+			isa = PBXGroup;
+			children = (
+				BDA650CF1A0406BD005BBC5E /* ChangeMarks */,
+				BDA650CA1A0406BD005BBC5E /* Frameworks */,
+				BDA650C91A0406BD005BBC5E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BDA650C91A0406BD005BBC5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BDA650CA1A0406BD005BBC5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDA650CB1A0406BD005BBC5E /* AppKit.framework */,
+				BDA650CD1A0406BD005BBC5E /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDA650CF1A0406BD005BBC5E /* ChangeMarks */ = {
+			isa = PBXGroup;
+			children = (
+				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
+				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
+				BDA650D01A0406BD005BBC5E /* Supporting Files */,
+			);
+			path = ChangeMarks;
+			sourceTree = "<group>";
+		};
+		BDA650D01A0406BD005BBC5E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BDA650D11A0406BD005BBC5E /* Info.plist */,
+				BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BDA650C71A0406BD005BBC5E /* ChangeMarks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDA650D91A0406BD005BBC5E /* Build configuration list for PBXNativeTarget "ChangeMarks" */;
+			buildPhases = (
+				BDA650C41A0406BD005BBC5E /* Sources */,
+				BDA650C51A0406BD005BBC5E /* Resources */,
+				BDA650C61A0406BD005BBC5E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChangeMarks;
+			productName = ChangeMarks;
+			productReference = BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BDA650C01A0406BD005BBC5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = zenangst;
+				TargetAttributes = {
+					BDA650C71A0406BD005BBC5E = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BDA650BF1A0406BD005BBC5E;
+			productRefGroup = BDA650C91A0406BD005BBC5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BDA650C71A0406BD005BBC5E /* ChangeMarks */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BDA650C51A0406BD005BBC5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BDA650C41A0406BD005BBC5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BDA650D71A0406BD005BBC5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		BDA650D81A0406BD005BBC5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		BDA650DA1A0406BD005BBC5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = ChangeMarks/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		BDA650DB1A0406BD005BBC5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = ChangeMarks/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDA650D71A0406BD005BBC5E /* Debug */,
+				BDA650D81A0406BD005BBC5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDA650D91A0406BD005BBC5E /* Build configuration list for PBXNativeTarget "ChangeMarks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDA650DA1A0406BD005BBC5E /* Debug */,
+				BDA650DB1A0406BD005BBC5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BDA650C01A0406BD005BBC5E /* Project object */;
+}
