@@ -271,6 +271,7 @@
 				BDA650DB1A0406BD005BBC5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
