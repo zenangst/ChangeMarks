@@ -19,12 +19,12 @@
 
     if (filteredCompletions.count > selectedCompletionIndex) {
 
-        IDEIndexCompletionItem *completion = filteredCompletions[selectedCompletionIndex];
+        NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
+                                     @"length"   : @([self cursorLocation] - [self wordStartLocation])};
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Add change mark" object:[completion completionText]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Add change mark range" object:dictionary];
         });
-
     }
 
     return [self zen_handleTextViewShouldChangeTextInRange:arg1 replacementString:arg2];
@@ -36,13 +36,14 @@
     NSArray *filteredCompletions = [self filteredCompletionsAlpha];
 
     if (filteredCompletions.count > selectedCompletionIndex) {
+        IDEIndexCompletionItem *currentCompletion = filteredCompletions[selectedCompletionIndex];
 
-        IDEIndexCompletionItem *completion = filteredCompletions[selectedCompletionIndex];
+        NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
+                                     @"length"   : @([[currentCompletion completionText] length])};
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Add change mark" object:[completion completionText]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Add change mark range" object:dictionary];
         });
-
     }
 
     return [self zen_insertCurrentCompletion];
@@ -50,6 +51,7 @@
 
 - (BOOL)zen_handleInsertText:(id)arg1
 {
+
     return [self zen_handleInsertText:arg1];
 }
 
@@ -59,10 +61,6 @@
 
     original = class_getInstanceMethod(self, NSSelectorFromString(@"handleTextViewShouldChangeTextInRange:replacementString:"));
     swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_handleTextViewShouldChangeTextInRange:replacementString:"));
-    method_exchangeImplementations(original, swizzle);
-
-    original = class_getInstanceMethod(self, NSSelectorFromString(@"handleInsertText:"));
-    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_handleInsertText:"));
     method_exchangeImplementations(original, swizzle);
 
     original = class_getInstanceMethod(self, NSSelectorFromString(@"insertCurrentCompletion"));

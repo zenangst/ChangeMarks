@@ -43,13 +43,13 @@ static ChangeMarks *sharedPlugin;
     if (!self) return nil;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addChangeMarks:)
+                                             selector:@selector(addChangeMark:)
                                                  name:@"Add change mark"
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(pasteChangeMark:)
-                                                 name:@"Paste change mark"
+                                             selector:@selector(addChangeMarkRange:)
+                                                 name:@"Add change mark range"
                                                object:nil];
 
     return self;
@@ -73,14 +73,7 @@ static ChangeMarks *sharedPlugin;
 
 #pragma mark - Notifications
 
-- (void)addChangeMarks:(NSNotification *)notification
-{
-    if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
-        [self insertChangeMark:[self.xcodeManager.textView rangeForUserCompletion]];
-    }
-}
-
-- (void)pasteChangeMark:(NSNotification *)notification
+- (void)addChangeMark:(NSNotification *)notification
 {
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
         NSString *newString = (NSString *)notification.object;
@@ -88,11 +81,21 @@ static ChangeMarks *sharedPlugin;
         NSInteger location  = self.xcodeManager.selectedRange.location - newString.length;
         NSRange range = NSMakeRange(location, length);
 
-        [self insertChangeMark:range];
+        [self colorBackgroundWithRange:range];
     }
 }
 
-- (void)insertChangeMark:(NSRange)range
+- (void)addChangeMarkRange:(NSNotification *)notification
+{
+    if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)notification.object;
+        NSRange range = NSMakeRange([dictionary[@"location"] integerValue], [dictionary[@"length"] integerValue]);
+
+        [self colorBackgroundWithRange:range];
+    }
+}
+
+- (void)colorBackgroundWithRange:(NSRange)range
 {
     NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
     NSColor *color = [NSColor colorWithRed:0.8 green:0.93 blue:0.34 alpha:0.5];
