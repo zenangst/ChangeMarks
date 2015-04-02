@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'ChageMarksPlugins' target in the 'ChageMarksPlugins' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#import "XcodePrivate.h"

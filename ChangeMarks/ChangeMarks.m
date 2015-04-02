@@ -8,12 +8,15 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
+#import "XcodeManager.h"
 
 static ChangeMarks *sharedPlugin;
 
 @interface ChangeMarks()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
+@property (nonatomic, strong) XcodeManager *xcodeManager;
+
 @end
 
 @implementation ChangeMarks
@@ -25,7 +28,7 @@ static ChangeMarks *sharedPlugin;
     if (![currentApplicationName isEqual:@"Xcode"]) return;
 
     dispatch_once(&onceToken, ^{
-        sharedPlugin = [[self alloc] initWithBundle:plugin];
+        sharedPlugin = [[self alloc] init];
     });
 }
 
@@ -34,12 +37,20 @@ static ChangeMarks *sharedPlugin;
     return sharedPlugin;
 }
 
-- (id)initWithBundle:(NSBundle *)plugin
+- (instancetype)init
 {
     self = [super init];
     if (!self) return nil;
 
-    self.bundle = plugin;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addChangeMarks:)
+                                                 name:@"Add change mark"
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pasteChangeMark:)
+                                                 name:@"Paste change mark"
+                                               object:nil];
 
     return self;
 }
@@ -49,38 +60,45 @@ static ChangeMarks *sharedPlugin;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)swizzle
+#pragma mark - Getters
+
+- (XcodeManager *)xcodeManager
 {
-    static dispatch_once_t onceToken;
+    if (_xcodeManager) return _xcodeManager;
 
-    Class IDEWorkspaceWindowControllerClass = NSClassFromString(@"IDEWorkspaceWindowController");
+    _xcodeManager = [[XcodeManager alloc] init];
 
-    dispatch_once(&onceToken, ^{
-        // Insert awesome here
-    });
+    return _xcodeManager;
 }
 
-- (void)swizzleClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector instanceMethod:(BOOL)instanceMethod
+#pragma mark - Notifications
+
+- (void)addChangeMarks:(NSNotification *)notification
 {
-    if (class) {
-        Method originalMethod;
-        Method swizzledMethod;
-        if (instanceMethod) {
-            originalMethod = class_getInstanceMethod(class, originalSelector);
-            swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        } else {
-            originalMethod = class_getClassMethod(class, originalSelector);
-            swizzledMethod = class_getClassMethod(class, swizzledSelector);
-        }
-
-        BOOL didAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-
-        if (didAddMethod) {
-            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-        } else {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
+    if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
+        [self insertChangeMark:[self.xcodeManager.textView rangeForUserCompletion]];
     }
+}
+
+- (void)pasteChangeMark:(NSNotification *)notification
+{
+    if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
+        NSString *newString = (NSString *)notification.object;
+        NSInteger length = newString.length;
+        NSInteger location  = self.xcodeManager.selectedRange.location - newString.length;
+        NSRange range = NSMakeRange(location, length);
+
+        [self insertChangeMark:range];
+    }
+}
+
+- (void)insertChangeMark:(NSRange)range
+{
+    NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
+    NSColor *color = [NSColor colorWithRed:0.8 green:0.93 blue:0.34 alpha:0.5];
+    [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
+                                   value:color
+                       forCharacterRange:range];
 }
 
 @end
