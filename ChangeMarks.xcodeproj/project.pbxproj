@@ -7,43 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD50BCA01ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD50BC9A1ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.m */; };
 		BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */; };
 		BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */; };
 		BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B05011ACD7F67000FA861 /* IDEKit.framework */; };
 		BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */; };
 		BD8B051B1ACD804D000FA861 /* XcodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05161ACD804D000FA861 /* XcodeManager.m */; };
-		BD8B051C1ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05191ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.m */; };
 		BD8B051E1ACD8064000FA861 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B051D1ACD8064000FA861 /* Cocoa.framework */; };
 		BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */; };
 		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD50BC901ACD85DE008B439B /* DVTCompletingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTCompletingTextView.h; sourceTree = "<group>"; };
+		BD50BC911ACD85DE008B439B /* DVTCompletingTextViewDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTCompletingTextViewDelegate-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC921ACD85DE008B439B /* DVTFontAndColorTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFontAndColorTheme.h; sourceTree = "<group>"; };
+		BD50BC931ACD85DE008B439B /* DVTInvalidation-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTInvalidation-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC941ACD85DE008B439B /* DVTPreferenceSet-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTPreferenceSet-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC951ACD85DE008B439B /* DVTTextCompletionDataSourceDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionDataSourceDelegate-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC961ACD85DE008B439B /* DVTTextCompletionInlinePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionInlinePreviewController.h; sourceTree = "<group>"; };
+		BD50BC971ACD85DE008B439B /* DVTTextCompletionItem-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionItem-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC981ACD85DE008B439B /* DVTTextCompletionListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionListWindowController.h; sourceTree = "<group>"; };
+		BD50BC991ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionSession+ChangeMarks.h"; sourceTree = "<group>"; };
+		BD50BC9A1ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextCompletionSession+ChangeMarks.m"; sourceTree = "<group>"; };
+		BD50BC9B1ACD85DE008B439B /* DVTTextCompletionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionSession.h; sourceTree = "<group>"; };
+		BD50BC9C1ACD85DE008B439B /* DVTTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextStorage.h; sourceTree = "<group>"; };
+		BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorageDelegate-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCompletionItem.h; sourceTree = "<group>"; };
+		BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEOpenQuicklyPattern.h; sourceTree = "<group>"; };
 		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
-		BD8B05041ACD804D000FA861 /* DVTTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextStorage.h; sourceTree = "<group>"; };
-		BD8B05051ACD804D000FA861 /* DVTTextStorageDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorageDelegate-Protocol.h"; sourceTree = "<group>"; };
-		BD8B05061ACD804D000FA861 /* DVTInvalidation-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTInvalidation-Protocol.h"; sourceTree = "<group>"; };
-		BD8B05071ACD804D000FA861 /* DVTCompletingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTCompletingTextView.h; sourceTree = "<group>"; };
-		BD8B05081ACD804D000FA861 /* DVTTextCompletionDataSourceDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionDataSourceDelegate-Protocol.h"; sourceTree = "<group>"; };
-		BD8B05091ACD804D000FA861 /* DVTTextCompletionInlinePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionInlinePreviewController.h; sourceTree = "<group>"; };
-		BD8B050A1ACD804D000FA861 /* DVTTextCompletionItem-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionItem-Protocol.h"; sourceTree = "<group>"; };
-		BD8B050B1ACD804D000FA861 /* DVTTextCompletionListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionListWindowController.h; sourceTree = "<group>"; };
-		BD8B050C1ACD804D000FA861 /* DVTCompletingTextViewDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTCompletingTextViewDelegate-Protocol.h"; sourceTree = "<group>"; };
-		BD8B050D1ACD804D000FA861 /* DVTCompletingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTCompletingTextView.h; sourceTree = "<group>"; };
-		BD8B050E1ACD804D000FA861 /* DVTTextCompletionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionSession.h; sourceTree = "<group>"; };
-		BD8B050F1ACD804D000FA861 /* IDEIndexCompletionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCompletionItem.h; sourceTree = "<group>"; };
-		BD8B05101ACD804D000FA861 /* IDEOpenQuicklyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEOpenQuicklyPattern.h; sourceTree = "<group>"; };
-		BD8B05111ACD804D000FA861 /* DVTPreferenceSet-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTPreferenceSet-Protocol.h"; sourceTree = "<group>"; };
-		BD8B05121ACD804D000FA861 /* DVTFontAndColorTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFontAndColorTheme.h; sourceTree = "<group>"; };
 		BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+ChangeMarks.h"; sourceTree = "<group>"; };
 		BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+ChangeMarks.m"; sourceTree = "<group>"; };
 		BD8B05151ACD804D000FA861 /* XcodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeManager.h; sourceTree = "<group>"; };
 		BD8B05161ACD804D000FA861 /* XcodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeManager.m; sourceTree = "<group>"; };
 		BD8B05171ACD804D000FA861 /* XcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodePrivate.h; sourceTree = "<group>"; };
-		BD8B05181ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionSession+ChangeMarks.h"; sourceTree = "<group>"; };
-		BD8B05191ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextCompletionSession+ChangeMarks.m"; sourceTree = "<group>"; };
 		BD8B051D1ACD8064000FA861 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BD8B051F1ACD80C8000FA861 /* ChangeMarksPlugIn-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeMarksPlugIn-Prefix.pch"; sourceTree = "<group>"; };
 		BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeMarks.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +69,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD50BC8F1ACD85DE008B439B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				BD50BC901ACD85DE008B439B /* DVTCompletingTextView.h */,
+				BD50BC911ACD85DE008B439B /* DVTCompletingTextViewDelegate-Protocol.h */,
+				BD50BC921ACD85DE008B439B /* DVTFontAndColorTheme.h */,
+				BD50BC931ACD85DE008B439B /* DVTInvalidation-Protocol.h */,
+				BD50BC941ACD85DE008B439B /* DVTPreferenceSet-Protocol.h */,
+				BD50BC951ACD85DE008B439B /* DVTTextCompletionDataSourceDelegate-Protocol.h */,
+				BD50BC961ACD85DE008B439B /* DVTTextCompletionInlinePreviewController.h */,
+				BD50BC971ACD85DE008B439B /* DVTTextCompletionItem-Protocol.h */,
+				BD50BC981ACD85DE008B439B /* DVTTextCompletionListWindowController.h */,
+				BD50BC991ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.h */,
+				BD50BC9A1ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.m */,
+				BD50BC9B1ACD85DE008B439B /* DVTTextCompletionSession.h */,
+				BD50BC9C1ACD85DE008B439B /* DVTTextStorage.h */,
+				BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */,
+				BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */,
+				BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		BDA650BF1A0406BD005BBC5E = {
 			isa = PBXGroup;
 			children = (
@@ -104,29 +126,13 @@
 			isa = PBXGroup;
 			children = (
 				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
-				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
-				BD8B05041ACD804D000FA861 /* DVTTextStorage.h */,
-				BD8B05051ACD804D000FA861 /* DVTTextStorageDelegate-Protocol.h */,
-				BD8B05061ACD804D000FA861 /* DVTInvalidation-Protocol.h */,
-				BD8B05071ACD804D000FA861 /* DVTCompletingTextView.h */,
-				BD8B05081ACD804D000FA861 /* DVTTextCompletionDataSourceDelegate-Protocol.h */,
-				BD8B05091ACD804D000FA861 /* DVTTextCompletionInlinePreviewController.h */,
-				BD8B050A1ACD804D000FA861 /* DVTTextCompletionItem-Protocol.h */,
-				BD8B050B1ACD804D000FA861 /* DVTTextCompletionListWindowController.h */,
-				BD8B050C1ACD804D000FA861 /* DVTCompletingTextViewDelegate-Protocol.h */,
-				BD8B050D1ACD804D000FA861 /* DVTCompletingTextView.h */,
-				BD8B050E1ACD804D000FA861 /* DVTTextCompletionSession.h */,
-				BD8B050F1ACD804D000FA861 /* IDEIndexCompletionItem.h */,
-				BD8B05101ACD804D000FA861 /* IDEOpenQuicklyPattern.h */,
-				BD8B05111ACD804D000FA861 /* DVTPreferenceSet-Protocol.h */,
-				BD8B05121ACD804D000FA861 /* DVTFontAndColorTheme.h */,
 				BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */,
-				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
 				BD8B05151ACD804D000FA861 /* XcodeManager.h */,
-				BD8B05161ACD804D000FA861 /* XcodeManager.m */,
 				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
-				BD8B05181ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.h */,
-				BD8B05191ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.m */,
+				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
+				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
+				BD8B05161ACD804D000FA861 /* XcodeManager.m */,
+				BD50BC8F1ACD85DE008B439B /* Headers */,
 				BDA650D01A0406BD005BBC5E /* Supporting Files */,
 			);
 			path = ChangeMarks;
@@ -210,7 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
-				BD8B051C1ACD804D000FA861 /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
+				BD50BCA01ACD85DE008B439B /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
 				BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */,
 				BD8B051B1ACD804D000FA861 /* XcodeManager.m in Sources */,
 			);
