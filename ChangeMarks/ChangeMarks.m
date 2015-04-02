@@ -89,7 +89,8 @@ static ChangeMarks *sharedPlugin;
 {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *)notification.object;
-        NSRange range = NSMakeRange([dictionary[@"location"] integerValue], [dictionary[@"length"] integerValue]);
+        NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
+                                    [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
     }
