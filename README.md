@@ -1,5 +1,7 @@
 ## Change Marks
 
+<img src="https://cloud.githubusercontent.com/assets/57446/6997929/6cc04f24-dbcf-11e4-878e-26e65c1cd306.png">
+
 Work in progress
 
 ## Contribute
