@@ -7,13 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BDA650CC1A0406BD005BBC5E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA650CB1A0406BD005BBC5E /* AppKit.framework */; };
-		BDA650CE1A0406BD005BBC5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA650CD1A0406BD005BBC5E /* Foundation.framework */; };
+		BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */; };
+		BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */; };
+		BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */; };
+		BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B05011ACD7F67000FA861 /* IDEKit.framework */; };
+		BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */; };
+		BD8B051B1ACD804D000FA861 /* XcodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05161ACD804D000FA861 /* XcodeManager.m */; };
+		BD8B051E1ACD8064000FA861 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B051D1ACD8064000FA861 /* Cocoa.framework */; };
 		BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */; };
 		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
+		BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD246E701AD19673000E683A /* NSTextStorage+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextStorage+ChangeMarks.h"; sourceTree = "<group>"; };
+		BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextStorage+ChangeMarks.m"; sourceTree = "<group>"; };
+		BD50BC901ACD85DE008B439B /* DVTCompletingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTCompletingTextView.h; sourceTree = "<group>"; };
+		BD50BC911ACD85DE008B439B /* DVTCompletingTextViewDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTCompletingTextViewDelegate-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC921ACD85DE008B439B /* DVTFontAndColorTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFontAndColorTheme.h; sourceTree = "<group>"; };
+		BD50BC931ACD85DE008B439B /* DVTInvalidation-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTInvalidation-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC941ACD85DE008B439B /* DVTPreferenceSet-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTPreferenceSet-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC951ACD85DE008B439B /* DVTTextCompletionDataSourceDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionDataSourceDelegate-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC961ACD85DE008B439B /* DVTTextCompletionInlinePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionInlinePreviewController.h; sourceTree = "<group>"; };
+		BD50BC971ACD85DE008B439B /* DVTTextCompletionItem-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionItem-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC981ACD85DE008B439B /* DVTTextCompletionListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionListWindowController.h; sourceTree = "<group>"; };
+		BD50BC9B1ACD85DE008B439B /* DVTTextCompletionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextCompletionSession.h; sourceTree = "<group>"; };
+		BD50BC9C1ACD85DE008B439B /* DVTTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextStorage.h; sourceTree = "<group>"; };
+		BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorageDelegate-Protocol.h"; sourceTree = "<group>"; };
+		BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCompletionItem.h; sourceTree = "<group>"; };
+		BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEOpenQuicklyPattern.h; sourceTree = "<group>"; };
+		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
+		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+ChangeMarks.h"; sourceTree = "<group>"; };
+		BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+ChangeMarks.m"; sourceTree = "<group>"; };
+		BD8B05151ACD804D000FA861 /* XcodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeManager.h; sourceTree = "<group>"; };
+		BD8B05161ACD804D000FA861 /* XcodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeManager.m; sourceTree = "<group>"; };
+		BD8B05171ACD804D000FA861 /* XcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodePrivate.h; sourceTree = "<group>"; };
+		BD8B051D1ACD8064000FA861 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BD8B051F1ACD80C8000FA861 /* ChangeMarksPlugIn-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeMarksPlugIn-Prefix.pch"; sourceTree = "<group>"; };
 		BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeMarks.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA650CB1A0406BD005BBC5E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		BDA650CD1A0406BD005BBC5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -21,6 +53,8 @@
 		BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ChangeMarks.xcscheme; path = ChangeMarks.xcodeproj/xcshareddata/xcschemes/ChangeMarks.xcscheme; sourceTree = SOURCE_ROOT; };
 		BDA650D41A0406BD005BBC5E /* ChangeMarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeMarks.h; sourceTree = "<group>"; };
 		BDA650D51A0406BD005BBC5E /* ChangeMarks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarks.m; sourceTree = "<group>"; };
+		BDA83AEA1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionSession+ChangeMarks.h"; sourceTree = "<group>"; };
+		BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextCompletionSession+ChangeMarks.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,14 +62,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDA650CC1A0406BD005BBC5E /* AppKit.framework in Frameworks */,
-				BDA650CE1A0406BD005BBC5E /* Foundation.framework in Frameworks */,
+				BD8B051E1ACD8064000FA861 /* Cocoa.framework in Frameworks */,
+				BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */,
+				BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */,
+				BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD50BC8F1ACD85DE008B439B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				BD50BC901ACD85DE008B439B /* DVTCompletingTextView.h */,
+				BD50BC911ACD85DE008B439B /* DVTCompletingTextViewDelegate-Protocol.h */,
+				BD50BC921ACD85DE008B439B /* DVTFontAndColorTheme.h */,
+				BD50BC931ACD85DE008B439B /* DVTInvalidation-Protocol.h */,
+				BD50BC941ACD85DE008B439B /* DVTPreferenceSet-Protocol.h */,
+				BD50BC951ACD85DE008B439B /* DVTTextCompletionDataSourceDelegate-Protocol.h */,
+				BD50BC961ACD85DE008B439B /* DVTTextCompletionInlinePreviewController.h */,
+				BD50BC971ACD85DE008B439B /* DVTTextCompletionItem-Protocol.h */,
+				BD50BC981ACD85DE008B439B /* DVTTextCompletionListWindowController.h */,
+				BD50BC9B1ACD85DE008B439B /* DVTTextCompletionSession.h */,
+				BD50BC9C1ACD85DE008B439B /* DVTTextStorage.h */,
+				BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */,
+				BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */,
+				BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		BDA650BF1A0406BD005BBC5E = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +113,10 @@
 		BDA650CA1A0406BD005BBC5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD8B051D1ACD8064000FA861 /* Cocoa.framework */,
+				BD8B05011ACD7F67000FA861 /* IDEKit.framework */,
+				BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */,
+				BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */,
 				BDA650CB1A0406BD005BBC5E /* AppKit.framework */,
 				BDA650CD1A0406BD005BBC5E /* Foundation.framework */,
 			);
@@ -65,9 +126,19 @@
 		BDA650CF1A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXGroup;
 			children = (
+				BDA83AEA1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.h */,
+				BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */,
 				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
+				BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */,
+				BD8B05151ACD804D000FA861 /* XcodeManager.h */,
+				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
 				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
+				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
+				BD8B05161ACD804D000FA861 /* XcodeManager.m */,
+				BD50BC8F1ACD85DE008B439B /* Headers */,
 				BDA650D01A0406BD005BBC5E /* Supporting Files */,
+				BD246E701AD19673000E683A /* NSTextStorage+ChangeMarks.h */,
+				BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */,
 			);
 			path = ChangeMarks;
 			sourceTree = "<group>";
@@ -75,6 +146,7 @@
 		BDA650D01A0406BD005BBC5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BD8B051F1ACD80C8000FA861 /* ChangeMarksPlugIn-Prefix.pch */,
 				BDA650D11A0406BD005BBC5E /* Info.plist */,
 				BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */,
 			);
@@ -148,7 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */,
+				BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
 				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
+				BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */,
+				BD8B051B1ACD804D000FA861 /* XcodeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +306,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+				);
+				GCC_PREFIX_HEADER = "ChangeMarks/ChangeMarksPlugIn-Prefix.pch";
 				INFOPLIST_FILE = ChangeMarks/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -244,6 +326,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+				);
+				GCC_PREFIX_HEADER = "ChangeMarks/ChangeMarksPlugIn-Prefix.pch";
 				INFOPLIST_FILE = ChangeMarks/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -271,6 +359,7 @@
 				BDA650DB1A0406BD005BBC5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
