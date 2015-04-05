@@ -34,7 +34,6 @@
 
 + (void)load
 {
-
     Method original, swizzle;
 
     original = class_getInstanceMethod(self, NSSelectorFromString(@"readSelectionFromPasteboard:"));

@@ -16,6 +16,7 @@ static ChangeMarks *sharedPlugin;
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
 @property (nonatomic, strong) XcodeManager *xcodeManager;
+@property (nonatomic, strong) NSMenuItem *enabledMenuItem;
 
 @end
 
@@ -37,10 +38,20 @@ static ChangeMarks *sharedPlugin;
     return sharedPlugin;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (!self) return nil;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidFinishLaunching:)
+                                                 name:NSApplicationDidFinishLaunchingNotification
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(addChangeMark:)
@@ -55,9 +66,44 @@ static ChangeMarks *sharedPlugin;
     return self;
 }
 
-- (void)dealloc
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+
+    if (editMenuItem) {
+        NSMenu *pluginMenu = [[NSMenu alloc] initWithTitle:@"Change Marks"];
+
+        [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSInteger state = [userDefaults objectForKey:@"ChangeMarksEnabled"] ? [[userDefaults objectForKey:@"ChangeMarksEnabled"] integerValue] : 1;
+
+        _enabledMenuItem = [[NSMenuItem alloc] initWithTitle:@"Show Change Marks"
+                                                          action:@selector(toggleChangeMarks)
+                                                   keyEquivalent:@""];
+        _enabledMenuItem.state = state;
+        _enabledMenuItem.target = self;
+
+        [pluginMenu addItem:_enabledMenuItem];
+
+
+        [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Clear Change Marks"
+                                                              action:@selector(clearChangeMarks)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
+
+        NSString *versionString = [[NSBundle bundleForClass:[self class]] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        NSString *title = [NSString stringWithFormat:@"Change Marks (%@)", versionString];
+        NSMenuItem *pluginMenuItem = [[NSMenuItem alloc] initWithTitle:title
+                                                                action:nil
+                                                         keyEquivalent:@""];
+        pluginMenuItem.submenu = pluginMenu;
+
+        [[editMenuItem submenu] addItem:pluginMenuItem];
+    }
 }
 
 #pragma mark - Getters
@@ -69,6 +115,32 @@ static ChangeMarks *sharedPlugin;
     _xcodeManager = [[XcodeManager alloc] init];
 
     return _xcodeManager;
+}
+
+#pragma mark - Actions
+
+- (void)toggleChangeMarks
+{
+    [self clearChangeMarks];
+
+    self.enabledMenuItem.state = (self.enabledMenuItem.state == 1) ? 0 : 1;
+
+    if (self.enabledMenuItem.state == 0) {
+        [self clearChangeMarks];
+    }
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@(self.enabledMenuItem.state) forKey:@"ChangeMarksEnabled"];
+    [userDefaults synchronize];
+}
+
+- (void)clearChangeMarks
+{
+    NSRange range = NSMakeRange(0,[self.xcodeManager documentLength]);
+    NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
+
+    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                          forCharacterRange:range];
 }
 
 #pragma mark - Notifications
@@ -98,11 +170,13 @@ static ChangeMarks *sharedPlugin;
 
 - (void)colorBackgroundWithRange:(NSRange)range
 {
-    NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
-    NSColor *color = [NSColor colorWithRed:0.8 green:0.93 blue:0.34 alpha:0.5];
-    [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
-                                   value:color
-                       forCharacterRange:range];
+    if (self.enabledMenuItem.state == 1) {
+        NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
+        NSColor *color = [NSColor colorWithCalibratedRed:1.000 green:0.976 blue:0.741 alpha:1];
+        [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
+                                       value:color
+                           forCharacterRange:range];
+    }
 }
 
 @end

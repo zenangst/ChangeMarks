@@ -51,12 +51,6 @@
     return [self zen_insertCurrentCompletion];
 }
 
-- (BOOL)zen_handleInsertText:(id)arg1
-{
-
-    return [self zen_handleInsertText:arg1];
-}
-
 + (void)load
 {
     Method original, swizzle;
