@@ -29,7 +29,7 @@ static ChangeMarks *sharedPlugin;
     if (![currentApplicationName isEqual:@"Xcode"]) return;
 
     dispatch_once(&onceToken, ^{
-        sharedPlugin = [[self alloc] init];
+        sharedPlugin = [self new];
     });
 }
 
@@ -112,7 +112,7 @@ static ChangeMarks *sharedPlugin;
 {
     if (_xcodeManager) return _xcodeManager;
 
-    _xcodeManager = [[XcodeManager alloc] init];
+    _xcodeManager = [XcodeManager new];
 
     return _xcodeManager;
 }
