@@ -4,6 +4,11 @@
 
 Work in progress
 
+## Features
+- Enable/disable change marks using keyboard shortcuts
+- Clear change marks
+- Configure the change mark color
+
 ## Contribute
 
 1. Fork it
