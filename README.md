@@ -10,6 +10,10 @@ Change marks can be manually cleared of via a keyboard shortcut and are not pers
 - Clear change marks
 - Configure the change mark color
 
+#### Install via Alcatraz
+
+* Install plugin and restart Xcode.
+
 #### Build from Source
 
 * Build the Xcode project. The plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`.
