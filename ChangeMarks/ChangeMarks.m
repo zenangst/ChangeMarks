@@ -12,11 +12,15 @@
 
 static ChangeMarks *sharedPlugin;
 
+static NSString *const kChangeMarksEnabled = @"ChangeMarksEnabled";
+static NSString *const kChangeMarksColor = @"ChangeMarkColor";
+
 @interface ChangeMarks()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
 @property (nonatomic, strong) XcodeManager *xcodeManager;
 @property (nonatomic, strong) NSMenuItem *enabledMenuItem;
+@property (nonatomic, strong) NSColor *changeMarkColor;
 
 @end
 
@@ -76,7 +80,7 @@ static ChangeMarks *sharedPlugin;
         [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
 
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSInteger state = [userDefaults objectForKey:@"ChangeMarksEnabled"] ? [[userDefaults objectForKey:@"ChangeMarksEnabled"] integerValue] : 1;
+        NSInteger state = [userDefaults objectForKey:kChangeMarksEnabled] ? [[userDefaults objectForKey:kChangeMarksEnabled] integerValue] : 1;
 
         _enabledMenuItem = [[NSMenuItem alloc] initWithTitle:@"Show Change Marks"
                                                           action:@selector(toggleChangeMarks)
@@ -86,6 +90,13 @@ static ChangeMarks *sharedPlugin;
 
         [pluginMenu addItem:_enabledMenuItem];
 
+        [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Change Color"
+                                                              action:@selector(showColorPanel)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
 
         [pluginMenu addItem:({
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Clear Change Marks"
@@ -117,7 +128,36 @@ static ChangeMarks *sharedPlugin;
     return _xcodeManager;
 }
 
+- (NSColor *)changeMarkColor
+{
+    NSData *colorData = [[NSUserDefaults standardUserDefaults] dataForKey:kChangeMarksColor];
+
+    if (!colorData) {
+        _changeMarkColor = [NSColor colorWithCalibratedRed:1.000 green:0.976 blue:0.741 alpha:1];
+    } else {
+        _changeMarkColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:colorData];
+    }
+
+    return _changeMarkColor;
+}
+
 #pragma mark - Actions
+
+- (void)adjustColor:(id)sender
+{
+    NSColorPanel *panel = (NSColorPanel *)sender;
+
+    if (panel.color && [[NSApp keyWindow] firstResponder] == self.xcodeManager.textView) {
+        NSData *colorData = [NSArchiver archivedDataWithRootObject:panel.color];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:colorData forKey:kChangeMarksColor];
+        [userDefaults synchronize];
+
+        self.changeMarkColor = panel.color;
+
+        [self clearChangeMarks];
+    }
+}
 
 - (void)toggleChangeMarks
 {
@@ -130,8 +170,21 @@ static ChangeMarks *sharedPlugin;
     }
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@(self.enabledMenuItem.state) forKey:@"ChangeMarksEnabled"];
+    [userDefaults setObject:@(self.enabledMenuItem.state) forKey:kChangeMarksEnabled];
     [userDefaults synchronize];
+}
+
+- (void)showColorPanel
+{
+    NSColorPanel *panel = [NSColorPanel sharedColorPanel];
+    panel.color = self.changeMarkColor;
+    panel.target = self;
+    panel.action = @selector(adjustColor:);
+    [panel orderFront:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(colorPanelWillClose:)
+                                                 name:NSWindowWillCloseNotification object:nil];
 }
 
 - (void)clearChangeMarks
@@ -172,10 +225,23 @@ static ChangeMarks *sharedPlugin;
 {
     if (self.enabledMenuItem.state == 1) {
         NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
-        NSColor *color = [NSColor colorWithCalibratedRed:1.000 green:0.976 blue:0.741 alpha:1];
+        NSColor *color = self.changeMarkColor;
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
+    }
+}
+
+- (void)colorPanelWillClose:(NSNotification *)notification
+{
+    NSColorPanel *panel = [NSColorPanel sharedColorPanel];
+    if (panel == notification.object) {
+        panel.target = nil;
+        panel.action = nil;
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSWindowWillCloseNotification
+                                                      object:nil];
     }
 }
 
