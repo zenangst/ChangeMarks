@@ -59,12 +59,12 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(addChangeMark:)
-                                                 name:@"Add change mark"
+                                                 name:kChangeMarkAddChangeMarkNotification
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(addChangeMarkRange:)
-                                                 name:@"Add change mark range"
+                                                 name:kChangeMarkAddChangeMarkRangeNotification
                                                object:nil];
 
     return self;
@@ -83,8 +83,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         NSInteger state = [userDefaults objectForKey:kChangeMarksEnabled] ? [[userDefaults objectForKey:kChangeMarksEnabled] integerValue] : 1;
 
         _enabledMenuItem = [[NSMenuItem alloc] initWithTitle:@"Show Change Marks"
-                                                          action:@selector(toggleChangeMarks)
-                                                   keyEquivalent:@""];
+                                                      action:@selector(toggleChangeMarks)
+                                               keyEquivalent:@""];
         _enabledMenuItem.state = state;
         _enabledMenuItem.target = self;
 
@@ -133,7 +133,10 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     NSData *colorData = [[NSUserDefaults standardUserDefaults] dataForKey:kChangeMarksColor];
 
     if (!colorData) {
-        _changeMarkColor = [NSColor colorWithCalibratedRed:1.000 green:0.976 blue:0.741 alpha:1];
+        _changeMarkColor = [NSColor colorWithCalibratedRed:1.000
+                                                     green:0.976
+                                                      blue:0.741
+                                                     alpha:1];
     } else {
         _changeMarkColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:colorData];
     }
