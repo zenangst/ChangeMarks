@@ -7,3 +7,6 @@
 #endif
 
 #import "XcodePrivate.h"
+
+static NSString *const kChangeMarkAddChangeMarkNotification = @"kChangeMarkAddChangeMarkNotification";
+static NSString *const kChangeMarkAddChangeMarkRangeNotification = @"kChangeMarkAddChangeMarkRangeNotification";

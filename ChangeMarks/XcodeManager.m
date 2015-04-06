@@ -253,11 +253,6 @@
 - (void)insertText:(NSString *)string
 {
     [self.textView insertText:string];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Add change mark"
-                                                            object:string];
-    });
 }
 
 - (void)setSelectedRange:(NSRange)range
@@ -286,7 +281,7 @@
                           withUndoManager:[document undoManager]];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Add change mark"
+        [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkNotification
                                                             object:string];
     });
 }
