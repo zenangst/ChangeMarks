@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */; };
+		BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */; };
 		BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */; };
 		BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */; };
 		BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B05011ACD7F67000FA861 /* IDEKit.framework */; };
 		BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */; };
-		BD8B051B1ACD804D000FA861 /* XcodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8B05161ACD804D000FA861 /* XcodeManager.m */; };
 		BD8B051E1ACD8064000FA861 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B051D1ACD8064000FA861 /* Cocoa.framework */; };
 		BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */; };
 		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
@@ -22,6 +22,8 @@
 /* Begin PBXFileReference section */
 		BD246E701AD19673000E683A /* NSTextStorage+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextStorage+ChangeMarks.h"; sourceTree = "<group>"; };
 		BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextStorage+ChangeMarks.m"; sourceTree = "<group>"; };
+		BD36E9C71AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorage+ChangeMarks.h"; sourceTree = "<group>"; };
+		BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextStorage+ChangeMarks.m"; sourceTree = "<group>"; };
 		BD50BC901ACD85DE008B439B /* DVTCompletingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTCompletingTextView.h; sourceTree = "<group>"; };
 		BD50BC911ACD85DE008B439B /* DVTCompletingTextViewDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTCompletingTextViewDelegate-Protocol.h"; sourceTree = "<group>"; };
 		BD50BC921ACD85DE008B439B /* DVTFontAndColorTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFontAndColorTheme.h; sourceTree = "<group>"; };
@@ -41,8 +43,6 @@
 		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
 		BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+ChangeMarks.h"; sourceTree = "<group>"; };
 		BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+ChangeMarks.m"; sourceTree = "<group>"; };
-		BD8B05151ACD804D000FA861 /* XcodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeManager.h; sourceTree = "<group>"; };
-		BD8B05161ACD804D000FA861 /* XcodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XcodeManager.m; sourceTree = "<group>"; };
 		BD8B05171ACD804D000FA861 /* XcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodePrivate.h; sourceTree = "<group>"; };
 		BD8B051D1ACD8064000FA861 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BD8B051F1ACD80C8000FA861 /* ChangeMarksPlugIn-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeMarksPlugIn-Prefix.pch"; sourceTree = "<group>"; };
@@ -126,19 +126,19 @@
 		BDA650CF1A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXGroup;
 			children = (
+				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
+				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
 				BDA83AEA1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.h */,
 				BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */,
-				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
-				BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */,
-				BD8B05151ACD804D000FA861 /* XcodeManager.h */,
-				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
-				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
-				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
-				BD8B05161ACD804D000FA861 /* XcodeManager.m */,
+				BD36E9C71AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.h */,
+				BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */,
 				BD50BC8F1ACD85DE008B439B /* Headers */,
-				BDA650D01A0406BD005BBC5E /* Supporting Files */,
 				BD246E701AD19673000E683A /* NSTextStorage+ChangeMarks.h */,
 				BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */,
+				BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */,
+				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
+				BDA650D01A0406BD005BBC5E /* Supporting Files */,
+				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
 			);
 			path = ChangeMarks;
 			sourceTree = "<group>";
@@ -220,11 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */,
 				BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */,
 				BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
 				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
 				BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */,
-				BD8B051B1ACD804D000FA861 /* XcodeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

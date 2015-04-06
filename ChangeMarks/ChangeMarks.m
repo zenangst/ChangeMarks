@@ -8,7 +8,6 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
-#import "XcodeManager.h"
 
 static ChangeMarks *sharedPlugin;
 
@@ -18,7 +17,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @interface ChangeMarks()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
-@property (nonatomic, strong) XcodeManager *xcodeManager;
 @property (nonatomic, strong) NSMenuItem *enabledMenuItem;
 @property (nonatomic, strong) NSColor *changeMarkColor;
 
@@ -119,13 +117,33 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 #pragma mark - Getters
 
-- (XcodeManager *)xcodeManager
+- (id)currentEditor
 {
-    if (_xcodeManager) return _xcodeManager;
+    NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
 
-    _xcodeManager = [XcodeManager new];
+    if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
+        IDEWorkspaceWindowController *workspaceController = (IDEWorkspaceWindowController *)currentWindowController;
+        IDEEditorArea *editorArea = [workspaceController editorArea];
+        IDEEditorContext *editorContext = [editorArea lastActiveEditorContext];
+        return [editorContext editor];
+    }
 
-    return _xcodeManager;
+    return nil;
+}
+
+- (NSTextView *)textView
+{
+    if ([[self currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+        IDESourceCodeEditor *editor = [self currentEditor];
+        return editor.textView;
+    }
+
+    if ([[self currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeComparisonEditor")]) {
+        IDESourceCodeComparisonEditor *editor = [self currentEditor];
+        return editor.keyTextView;
+    }
+
+    return nil;
 }
 
 - (NSColor *)changeMarkColor
@@ -150,7 +168,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 {
     NSColorPanel *panel = (NSColorPanel *)sender;
 
-    if ([[NSApp keyWindow] firstResponder] == self.xcodeManager.textView &&
+    if ([[NSApp keyWindow] firstResponder] == self.textView &&
         panel.color) {
         NSData *colorData = [NSArchiver archivedDataWithRootObject:panel.color];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -193,8 +211,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)clearChangeMarks
 {
-    NSRange range = NSMakeRange(0,[self.xcodeManager documentLength]);
-    NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
+    NSRange range = NSMakeRange(0,[[[self textView] string] length]);
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
 
     [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
                           forCharacterRange:range];
@@ -207,7 +225,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
         NSString *newString = (NSString *)notification.object;
         NSInteger length = newString.length;
-        NSInteger location  = self.xcodeManager.selectedRange.location - newString.length;
+        NSInteger location  = [self textView].selectedRange.location - newString.length;
         NSRange range = NSMakeRange(location, length);
 
         [self colorBackgroundWithRange:range];
@@ -228,7 +246,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)colorBackgroundWithRange:(NSRange)range
 {
     if (self.enabledMenuItem.state == 1) {
-        NSLayoutManager *layoutManager = [[self.xcodeManager textView] layoutManager];
+        NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
