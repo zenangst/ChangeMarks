@@ -2,7 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/zenangst/ChangeMarks/master/screenshot.png">
 
-Change marks helps you to keep track of your most recent changes during your current session by giving the changed or added code a different background color.
+Change Marks helps you to keep track of your most recent changes by giving them a different background color.
 Change marks can be manually cleared of via a keyboard shortcut and are not persisted between sessions.
 
 ## Features
