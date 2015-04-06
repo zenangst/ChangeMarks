@@ -2,7 +2,8 @@
 
 <img src="https://cloud.githubusercontent.com/assets/57446/6997929/6cc04f24-dbcf-11e4-878e-26e65c1cd306.png">
 
-Work in progress
+Change marks helps you to keep track of your most recent changes during your current session by giving the changed or added code a different background color.
+Change marks can be manually cleared of via a keyboard shortcut and are not persisted between sessions.
 
 ## Features
 - Enable/disable change marks using keyboard shortcuts
