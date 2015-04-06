@@ -147,7 +147,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 {
     NSColorPanel *panel = (NSColorPanel *)sender;
 
-    if (panel.color && [[NSApp keyWindow] firstResponder] == self.xcodeManager.textView) {
+    if ([[NSApp keyWindow] firstResponder] == self.xcodeManager.textView &&
+        panel.color) {
         NSData *colorData = [NSArchiver archivedDataWithRootObject:panel.color];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:colorData forKey:kChangeMarksColor];
