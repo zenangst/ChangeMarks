@@ -22,8 +22,10 @@
         NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
                                      @"length"   : @([self cursorLocation] - [self wordStartLocation])};
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkRangeNotification
-                                                            object:dictionary];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkRangeNotification
+                                                                object:dictionary];
+        });
     }
 
     return [self zen_handleTextViewShouldChangeTextInRange:arg1 replacementString:arg2];
@@ -40,9 +42,10 @@
         NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
                                      @"length"   : @([[currentCompletion completionText] length])};
 
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkRangeNotification
-                                                            object:dictionary];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkRangeNotification
+                                                                object:dictionary];
+        });
     }
 
     return [self zen_insertCurrentCompletion];

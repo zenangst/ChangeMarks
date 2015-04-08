@@ -223,25 +223,34 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)addChangeMark:(NSNotification *)notification
 {
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarksTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSString *newString = (NSString *)notification.object;
-            NSInteger length = newString.length;
-            NSInteger location  = [self textView].selectedRange.location - newString.length;
-            NSRange range = NSMakeRange(location, length);
-            [self colorBackgroundWithRange:range];
-        });
+        NSString *newString = (NSString *)notification.object;
+        NSInteger length = newString.length;
+        NSInteger location  = [self textView].selectedRange.location - newString.length;
+        NSRange range = NSMakeRange(location, length);
+
+        [self colorBackgroundWithRange:range];
     }
 }
 
 - (void)addChangeMarkRange:(NSNotification *)notification
 {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarksTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSDictionary *dictionary = (NSDictionary *)notification.object;
-            NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
-                                        [dictionary[@"length"] integerValue]);
-            [self colorBackgroundWithRange:range];
-        });
+        NSDictionary *dictionary = (NSDictionary *)notification.object;
+        NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
+                                    [dictionary[@"length"] integerValue]);
+
+        [self colorBackgroundWithRange:range];
+    }
+}
+
+- (void)colorBackgroundWithRange:(NSRange)range
+{
+    if (self.enabledMenuItem.state == 1) {
+        NSLayoutManager *layoutManager = [self.textView layoutManager];
+        NSColor *color = self.changeMarkColor;
+        [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
+                                       value:color
+                           forCharacterRange:range];
     }
 }
 
@@ -255,19 +264,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:NSWindowWillCloseNotification
                                                       object:nil];
-    }
-}
-
-#pragma mark - Private methods
-
-- (void)colorBackgroundWithRange:(NSRange)range
-{
-    if (self.enabledMenuItem.state == 1) {
-        NSLayoutManager *layoutManager = [self.textView layoutManager];
-        NSColor *color = self.changeMarkColor;
-        [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
-                                       value:color
-                           forCharacterRange:range];
     }
 }
 

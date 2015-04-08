@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDA650C71A0406BD005BBC5E"
+               BlueprintIdentifier = "890A4B3E171F031300AFE577"
                BuildableName = "ChangeMarks.xcplugin"
                BlueprintName = "ChangeMarks"
                ReferencedContainer = "container:ChangeMarks.xcodeproj">
@@ -56,13 +56,12 @@
       allowLocationSimulation = "NO"
       viewDebuggingEnabled = "No">
       <PathRunnable
-         runnableDebuggingMode = "0"
          FilePath = "/Applications/Xcode.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA650C71A0406BD005BBC5E"
+            BlueprintIdentifier = "890A4B3E171F031300AFE577"
             BuildableName = "ChangeMarks.xcplugin"
             BlueprintName = "ChangeMarks"
             ReferencedContainer = "container:ChangeMarks.xcodeproj">

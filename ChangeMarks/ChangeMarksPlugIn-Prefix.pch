@@ -10,5 +10,3 @@
 
 static NSString *const kChangeMarkAddChangeMarkNotification = @"kChangeMarkAddChangeMarkNotification";
 static NSString *const kChangeMarkAddChangeMarkRangeNotification = @"kChangeMarkAddChangeMarkRangeNotification";
-
-static const CGFloat kChangeMarksTiming = 0.1f;

@@ -16,9 +16,10 @@
     NSPasteboard *generalPasteboard  = [NSPasteboard generalPasteboard];
     NSString *pastedString = [generalPasteboard  stringForType:NSPasteboardTypeString];
 
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkNotification
-                                                        object:pastedString];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkNotification
+                                                            object:pastedString];
+    });
 
     return [self zen_readSelectionFromPasteboard:pboard];
 }
