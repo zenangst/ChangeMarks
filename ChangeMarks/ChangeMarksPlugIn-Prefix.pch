@@ -8,5 +8,7 @@
 
 #import "XcodePrivate.h"
 
-static NSString *const kChangeMarkAddChangeMarkNotification = @"kChangeMarkAddChangeMarkNotification";
-static NSString *const kChangeMarkAddChangeMarkRangeNotification = @"kChangeMarkAddChangeMarkRangeNotification";
+static NSString *const kChangeMarkAddNotification = @"kChangeMarkAddChangeMarkNotification";
+static NSString *const kChangeMarkAddRangeNotification = @"kChangeMarkAddChangeMarkRangeNotification";
+
+static const CGFloat kChangeMarkTiming = 0.1f;

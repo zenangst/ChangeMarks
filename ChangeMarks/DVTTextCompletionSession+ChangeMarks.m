@@ -22,8 +22,8 @@
         NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
                                      @"length"   : @([self cursorLocation] - [self wordStartLocation])};
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkRangeNotification
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarkTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddRangeNotification
                                                                 object:dictionary];
         });
     }
@@ -42,8 +42,8 @@
         NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
                                      @"length"   : @([[currentCompletion completionText] length])};
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkRangeNotification
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarkTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddRangeNotification
                                                                 object:dictionary];
         });
     }
