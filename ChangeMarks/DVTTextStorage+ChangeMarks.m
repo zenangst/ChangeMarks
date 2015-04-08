@@ -36,6 +36,9 @@
     swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_replaceCharactersInRange:withString:withUndoManager:"));
     method_exchangeImplementations(original, swizzle);
 
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"zen_didReplaceCharactersInRange:withString:changeInLength:"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"didReplaceCharactersInRange:withString:changeInLength:"));
+    method_exchangeImplementations(original, swizzle);
 }
 
 @end
