@@ -226,20 +226,30 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
         NSString *string = (NSString *)notification.object;
 
-        BOOL lastStringWasNewline = (self.lastInsertedString.length == 1 &&
-                                     [self.lastInsertedString characterAtIndex:0] == '\n');
-        if (lastStringWasNewline) {
-            NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *trimmedLineContents = [[self contentsOfRange:[self lineRange]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+
+        NSRange currentRange = [[self textView] selectedRange];
+        BOOL shouldTrimString = ((self.lastInsertedString.length == 1 &&
+                                 [self.lastInsertedString characterAtIndex:0] == '\n'));
+
+        if (shouldTrimString) {
             string = [string stringByReplacingOccurrencesOfString:trimmedString
                                                        withString:@""];
         }
 
-        NSInteger length = string.length;
-        NSInteger location  = [self textView].selectedRange.location - string.length;
-        NSRange range = NSMakeRange(location, length);
+        if (currentRange.length > 0 || [trimmedString isEqualToString:trimmedLineContents]) {
+            [self colorBackgroundWithRange:[self lineRange]];
+            self.lastInsertedString = nil;
+        } else {
+            NSInteger length = string.length;
+            NSInteger location  = [self textView].selectedRange.location - string.length;
+            NSRange range = NSMakeRange(location, length);
 
-        [self colorBackgroundWithRange:range];
-        self.lastInsertedString = string;
+            [self colorBackgroundWithRange:range];
+            self.lastInsertedString = string;
+        }
     }
 }
 
@@ -265,6 +275,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
+#pragma mark - Private methods
+
 - (void)colorPanelWillClose:(NSNotification *)notification
 {
     NSColorPanel *panel = [NSColorPanel sharedColorPanel];
@@ -276,6 +288,29 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                         name:NSWindowWillCloseNotification
                                                       object:nil];
     }
+}
+
+- (NSRange)lineRange
+{
+    NSRange selectedRange = [[self textView] selectedRange];
+    NSCharacterSet *newlineSet = [NSCharacterSet characterSetWithCharactersInString:@"\n"];
+    NSUInteger location = ([[[self textView] string] rangeOfCharacterFromSet:newlineSet
+                                                            options:NSBackwardsSearch
+                                                              range:NSMakeRange(0,selectedRange.location)].location);
+
+    NSUInteger length = ([[[self textView] string] rangeOfCharacterFromSet:newlineSet
+                                                          options:NSCaseInsensitiveSearch
+                                                            range:NSMakeRange(selectedRange.location+selectedRange.length,[[self textView] string].length-(selectedRange.location+selectedRange.length))].location);
+
+    location = (location == NSNotFound) ? 0 : location + 1;
+    length   = (location == 0) ? length+1   : (length+1) - location;
+
+    return NSMakeRange(location, length - 1);
+}
+
+- (NSString *)contentsOfRange:(NSRange)range
+{
+    return [[[self textView] string] substringWithRange:range];
 }
 
 @end

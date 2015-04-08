@@ -23,7 +23,9 @@
         });
     }
 
-    [self zen_edited:editedMask range:range changeInLength:delta];
+    [self zen_edited:editedMask
+               range:range
+      changeInLength:delta];
 }
 
 + (void)load
