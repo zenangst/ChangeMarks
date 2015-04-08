@@ -126,18 +126,18 @@
 		BDA650CF1A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXGroup;
 			children = (
+				BD50BC8F1ACD85DE008B439B /* Headers */,
+				BDA650D01A0406BD005BBC5E /* Supporting Files */,
 				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
 				BDA650D51A0406BD005BBC5E /* ChangeMarks.m */,
 				BDA83AEA1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.h */,
 				BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */,
 				BD36E9C71AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.h */,
 				BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */,
-				BD50BC8F1ACD85DE008B439B /* Headers */,
 				BD246E701AD19673000E683A /* NSTextStorage+ChangeMarks.h */,
 				BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */,
 				BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */,
 				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
-				BDA650D01A0406BD005BBC5E /* Supporting Files */,
 				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
 			);
 			path = ChangeMarks;
