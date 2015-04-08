@@ -15,12 +15,10 @@
 {
     if (range.location > 0 && range.length > 1 && delta > 0) {
         NSDictionary *rangeDictionary = @{@"location":@(range.location),
-                                          @"length":@(range.length)};
+                                          @"length"  :@(range.length)};
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkNotification
-                                                                object:rangeDictionary];
-        });
+        [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddChangeMarkNotification
+                                                            object:rangeDictionary];
     }
 
     [self zen_edited:editedMask range:range changeInLength:delta];
