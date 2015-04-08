@@ -19,6 +19,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
 @property (nonatomic, strong) NSMenuItem *enabledMenuItem;
 @property (nonatomic, strong) NSColor *changeMarkColor;
+@property (nonatomic, strong) NSString *lastInsertedString;
 
 @end
 
@@ -57,12 +58,12 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(addChangeMark:)
-                                                 name:kChangeMarkAddChangeMarkNotification
+                                                 name:kChangeMarkAddNotification
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(addChangeMarkRange:)
-                                                 name:kChangeMarkAddChangeMarkRangeNotification
+                                                 name:kChangeMarkAddRangeNotification
                                                object:nil];
 
     return self;
@@ -223,12 +224,22 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)addChangeMark:(NSNotification *)notification
 {
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
-        NSString *newString = (NSString *)notification.object;
-        NSInteger length = newString.length;
-        NSInteger location  = [self textView].selectedRange.location - newString.length;
+        NSString *string = (NSString *)notification.object;
+
+        BOOL lastStringWasNewline = (self.lastInsertedString.length == 1 &&
+                                     [self.lastInsertedString characterAtIndex:0] == '\n');
+        if (lastStringWasNewline) {
+            NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            string = [string stringByReplacingOccurrencesOfString:trimmedString
+                                                       withString:@""];
+        }
+
+        NSInteger length = string.length;
+        NSInteger location  = [self textView].selectedRange.location - string.length;
         NSRange range = NSMakeRange(location, length);
 
         [self colorBackgroundWithRange:range];
+        self.lastInsertedString = string;
     }
 }
 
