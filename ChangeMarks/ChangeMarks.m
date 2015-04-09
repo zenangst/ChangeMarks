@@ -246,7 +246,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
             NSInteger length = string.length;
             NSInteger location  = [self textView].selectedRange.location - string.length;
             NSRange range = NSMakeRange(location, length);
-
             [self colorBackgroundWithRange:range];
             self.lastInsertedString = string;
         }
@@ -267,11 +266,17 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)colorBackgroundWithRange:(NSRange)range
 {
     if (self.enabledMenuItem.state == 1) {
+        if (range.location > -1 &&
+            range.location <= [[[self textView] string] length] &&
+            range.length <= [[[self textView] string] length]) {
+
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
+
+        }
     }
 }
 
