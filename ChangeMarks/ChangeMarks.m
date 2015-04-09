@@ -225,10 +225,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 {
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
         NSString *string = (NSString *)notification.object;
-
         NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         NSString *trimmedLineContents = [[self contentsOfRange:[self lineRange]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
 
         NSRange currentRange = [[self textView] selectedRange];
         BOOL shouldTrimString = ((self.lastInsertedString.length == 1 &&
@@ -266,17 +264,11 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)colorBackgroundWithRange:(NSRange)range
 {
     if (self.enabledMenuItem.state == 1) {
-        if (range.location > -1 &&
-            range.location <= [[[self textView] string] length] &&
-            range.length <= [[[self textView] string] length]) {
-
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
-
-        }
     }
 }
 
@@ -310,12 +302,20 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     location = (location == NSNotFound) ? 0 : location + 1;
     length   = (location == 0) ? length+1   : (length+1) - location;
 
+    if (length > [[[self textView] string] length]) {
+        length = [[[self textView] string] length];
+    }
+
     return NSMakeRange(location, length - 1);
 }
 
 - (NSString *)contentsOfRange:(NSRange)range
 {
-    return [[[self textView] string] substringWithRange:range];
+    if (range.location + range.length > [[[self textView] string] length]) {
+        return @"";
+    } else {
+        return [[[self textView] string] substringWithRange:range];
+    }
 }
 
 @end
