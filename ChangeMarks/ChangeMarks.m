@@ -214,7 +214,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 {
     NSRange range;
 
-    if ([[self textView] selectedRange].location) {
+    if ([[self textView] selectedRange].length > 0) {
         range = [[self textView] selectedRange];
     } else {
         range = NSMakeRange(0,[[[self textView] string] length]);
