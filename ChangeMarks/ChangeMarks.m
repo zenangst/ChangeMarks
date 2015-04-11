@@ -212,7 +212,14 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)clearChangeMarks
 {
-    NSRange range = NSMakeRange(0,[[[self textView] string] length]);
+    NSRange range;
+
+    if ([[self textView] selectedRange].location) {
+        range = [[self textView] selectedRange];
+    } else {
+        range = NSMakeRange(0,[[[self textView] string] length]);
+    }
+
     NSLayoutManager *layoutManager = [[self textView] layoutManager];
 
     [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
