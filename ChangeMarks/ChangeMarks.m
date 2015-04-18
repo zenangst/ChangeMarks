@@ -16,10 +16,10 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 @interface ChangeMarks()
 
-@property (nonatomic, strong, readwrite) NSBundle *bundle;
-@property (nonatomic, strong) NSMenuItem *enabledMenuItem;
-@property (nonatomic, strong) NSColor *changeMarkColor;
-@property (nonatomic, strong) NSString *lastInsertedString;
+@property (nonatomic, readwrite) NSBundle *bundle;
+@property (nonatomic) NSMenuItem *enabledMenuItem;
+@property (nonatomic) NSColor *changeMarkColor;
+@property (nonatomic) NSString *lastInsertedString;
 
 @end
 
@@ -270,7 +270,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)colorBackgroundWithRange:(NSRange)range
 {
-    if (self.enabledMenuItem.state == 1) {
+    if (self.enabledMenuItem.state == 1 && [self validResponder]) {
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
@@ -280,6 +280,15 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 #pragma mark - Private methods
+
+- (BOOL)validResponder
+{
+    NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+    NSString *responderClass = NSStringFromClass(firstResponder.class);
+    NSArray *validClasses = @[@"DVTSourceTextView", @"IDEPlaygroundTextView"];
+
+    return ([validClasses containsObject:responderClass]);
+}
 
 - (void)colorPanelWillClose:(NSNotification *)notification
 {
