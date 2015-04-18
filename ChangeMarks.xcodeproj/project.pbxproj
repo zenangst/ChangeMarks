@@ -49,7 +49,7 @@
 		BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeMarks.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA650CB1A0406BD005BBC5E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		BDA650CD1A0406BD005BBC5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		BDA650D11A0406BD005BBC5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDA650D11A0406BD005BBC5E /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ChangeMarks.xcscheme; path = ChangeMarks.xcodeproj/xcshareddata/xcschemes/ChangeMarks.xcscheme; sourceTree = SOURCE_ROOT; };
 		BDA650D41A0406BD005BBC5E /* ChangeMarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeMarks.h; sourceTree = "<group>"; };
 		BDA650D51A0406BD005BBC5E /* ChangeMarks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarks.m; sourceTree = "<group>"; };
