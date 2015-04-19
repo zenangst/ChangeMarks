@@ -20,6 +20,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSMenuItem *enabledMenuItem;
 @property (nonatomic) NSColor *changeMarkColor;
 @property (nonatomic) NSString *lastInsertedString;
+@property (nonatomic) NSMutableArray *changes;
 
 @end
 
@@ -112,6 +113,15 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 #pragma mark - Getters
+
+- (NSMutableArray *)changes
+{
+    if (_changes) return _changes;
+
+    _changes = [NSMutableArray new];
+
+    return _changes;
+}
 
 - (id)currentEditor {
     NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
