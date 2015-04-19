@@ -10,6 +10,13 @@
 
 @implementation ChangeModel
 
++ (ChangeModel *)withRange:(NSRange)range
+{
+    ChangeModel *model = [[ChangeModel alloc] initWithRange:range];
+
+    return model;
+}
+
 - (instancetype)initWithRange:(NSRange)range
 {
     self = [super init];

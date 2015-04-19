@@ -8,6 +8,7 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
+#import "ChangeModel.h"
 
 static ChangeMarks *sharedPlugin;
 
@@ -261,6 +262,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
+
+        [self.changes addObject:[ChangeModel withRange:range]];
     }
 }
 

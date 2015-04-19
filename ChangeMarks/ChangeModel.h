@@ -13,6 +13,7 @@
 @property (nonatomic) NSUInteger location;
 @property (nonatomic) NSUInteger length;
 
++ (ChangeModel *)withRange:(NSRange)range;
 - (instancetype)initWithRange:(NSRange)range;
 
 @end
