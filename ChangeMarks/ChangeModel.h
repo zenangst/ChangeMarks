@@ -13,4 +13,6 @@
 @property (nonatomic) NSUInteger location;
 @property (nonatomic) NSUInteger length;
 
+- (instancetype)initWithRange:(NSRange)range;
+
 @end
