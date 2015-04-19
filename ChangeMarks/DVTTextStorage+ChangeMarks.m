@@ -12,10 +12,21 @@
 
 @implementation DVTTextStorage (ChangeMarks)
 
++ (void)load {
+    Method original, swizzle;
+
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"replaceCharactersInRange:withString:withUndoManager:"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_replaceCharactersInRange:withString:withUndoManager:"));
+    method_exchangeImplementations(original, swizzle);
+
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"zen_didReplaceCharactersInRange:withString:changeInLength:"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"didReplaceCharactersInRange:withString:changeInLength:"));
+    method_exchangeImplementations(original, swizzle);
+}
+
 - (void)zen_replaceCharactersInRange:(NSRange)range
                           withString:(NSString *)string
-                     withUndoManager:(id)undoManager
-{
+                     withUndoManager:(id)undoManager {
     [self zen_replaceCharactersInRange:range
                             withString:string
                        withUndoManager:undoManager];
@@ -26,19 +37,6 @@
                                                                 object:string];
         });
     }
-}
-
-+ (void)load
-{
-    Method original, swizzle;
-
-    original = class_getInstanceMethod(self, NSSelectorFromString(@"replaceCharactersInRange:withString:withUndoManager:"));
-    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_replaceCharactersInRange:withString:withUndoManager:"));
-    method_exchangeImplementations(original, swizzle);
-
-    original = class_getInstanceMethod(self, NSSelectorFromString(@"zen_didReplaceCharactersInRange:withString:changeInLength:"));
-    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"didReplaceCharactersInRange:withString:changeInLength:"));
-    method_exchangeImplementations(original, swizzle);
 }
 
 @end

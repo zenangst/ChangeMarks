@@ -12,8 +12,7 @@
 
 @implementation DVTTextCompletionSession (ChangeMarks)
 
-- (BOOL)zen_handleTextViewShouldChangeTextInRange:(struct _NSRange)arg1 replacementString:(id)arg2
-{
+- (BOOL)zen_handleTextViewShouldChangeTextInRange:(struct _NSRange)arg1 replacementString:(id)arg2 {
     long long selectedCompletionIndex = [self selectedCompletionIndex];
     NSArray *filteredCompletions = [self filteredCompletionsAlpha];
 
@@ -31,8 +30,7 @@
     return [self zen_handleTextViewShouldChangeTextInRange:arg1 replacementString:arg2];
 }
 
-- (BOOL)zen_insertCurrentCompletion
-{
+- (BOOL)zen_insertCurrentCompletion {
     long long selectedCompletionIndex = [self selectedCompletionIndex];
     NSArray *filteredCompletions = [self filteredCompletionsAlpha];
 
@@ -51,8 +49,7 @@
     return [self zen_insertCurrentCompletion];
 }
 
-+ (void)load
-{
++ (void)load {
     Method original, swizzle;
 
     original = class_getInstanceMethod(self, NSSelectorFromString(@"handleTextViewShouldChangeTextInRange:replacementString:"));

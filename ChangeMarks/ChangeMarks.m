@@ -25,8 +25,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 @implementation ChangeMarks
 
-+ (void)pluginDidLoad:(NSBundle *)plugin
-{
++ (void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     if (![currentApplicationName isEqual:@"Xcode"]) return;
@@ -36,18 +35,15 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     });
 }
 
-+ (instancetype)sharedPlugin
-{
++ (instancetype)sharedPlugin {
     return sharedPlugin;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (!self) return nil;
 
@@ -69,8 +65,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return self;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
-{
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
     NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
 
     if (editMenuItem) {
@@ -118,8 +113,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 #pragma mark - Getters
 
-- (id)currentEditor
-{
+- (id)currentEditor {
     NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
 
     if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
@@ -132,8 +126,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return nil;
 }
 
-- (NSTextView *)textView
-{
+- (NSTextView *)textView {
     if ([[self currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
         IDESourceCodeEditor *editor = [self currentEditor];
         return editor.textView;
@@ -147,8 +140,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return nil;
 }
 
-- (NSColor *)changeMarkColor
-{
+- (NSColor *)changeMarkColor {
     NSData *colorData = [[NSUserDefaults standardUserDefaults] dataForKey:kChangeMarksColor];
 
     if (!colorData) {
@@ -165,8 +157,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 #pragma mark - Actions
 
-- (void)adjustColor:(id)sender
-{
+- (void)adjustColor:(id)sender {
     NSColorPanel *panel = (NSColorPanel *)sender;
 
     if ([[NSApp keyWindow] firstResponder] == self.textView &&
@@ -182,8 +173,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (void)toggleChangeMarks
-{
+- (void)toggleChangeMarks {
     [self clearChangeMarks];
 
     self.enabledMenuItem.state = (self.enabledMenuItem.state == 1) ? 0 : 1;
@@ -197,8 +187,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     [userDefaults synchronize];
 }
 
-- (void)showColorPanel
-{
+- (void)showColorPanel {
     NSColorPanel *panel = [NSColorPanel sharedColorPanel];
     panel.color = self.changeMarkColor;
     panel.target = self;
@@ -210,8 +199,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                  name:NSWindowWillCloseNotification object:nil];
 }
 
-- (void)clearChangeMarks
-{
+- (void)clearChangeMarks {
     NSRange range;
 
     if ([[self textView] selectedRange].length > 0) {
@@ -228,8 +216,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 #pragma mark - Notifications
 
-- (void)addChangeMark:(NSNotification *)notification
-{
+- (void)addChangeMark:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
         NSString *string = (NSString *)notification.object;
         NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -257,8 +244,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (void)addChangeMarkRange:(NSNotification *)notification
-{
+- (void)addChangeMarkRange:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *)notification.object;
         NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
@@ -268,8 +254,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (void)colorBackgroundWithRange:(NSRange)range
-{
+- (void)colorBackgroundWithRange:(NSRange)range {
     if (self.enabledMenuItem.state == 1 && [self validResponder]) {
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
@@ -281,8 +266,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 #pragma mark - Private methods
 
-- (BOOL)validResponder
-{
+- (BOOL)validResponder {
     NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
     NSString *responderClass = NSStringFromClass(firstResponder.class);
     NSArray *validClasses = @[@"DVTSourceTextView", @"IDEPlaygroundTextView"];
@@ -290,8 +274,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return ([validClasses containsObject:responderClass]);
 }
 
-- (void)colorPanelWillClose:(NSNotification *)notification
-{
+- (void)colorPanelWillClose:(NSNotification *)notification {
     NSColorPanel *panel = [NSColorPanel sharedColorPanel];
     if (panel == notification.object) {
         panel.target = nil;
@@ -303,8 +286,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (NSRange)lineRange
-{
+- (NSRange)lineRange {
     NSRange selectedRange = [[self textView] selectedRange];
     NSCharacterSet *newlineSet = [NSCharacterSet characterSetWithCharactersInString:@"\n"];
     NSUInteger location = ([[[self textView] string] rangeOfCharacterFromSet:newlineSet
@@ -325,8 +307,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return NSMakeRange(location, length - 1);
 }
 
-- (NSString *)contentsOfRange:(NSRange)range
-{
+- (NSString *)contentsOfRange:(NSRange)range {
     if (range.location + range.length > [[[self textView] string] length]) {
         return @"";
     } else {
