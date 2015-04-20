@@ -11,4 +11,12 @@ import XCTest
 
 class ChangeControllerTests: XCTestCase {
 
+    func testAddChange() {
+        let controller = ChangeController()
+        let range1 = NSMakeRange(1,1)
+        controller.addChange(ChangeModel(range: range1, documentPath: "testDocument"))
+
+
+    }
+
 }
