@@ -13,10 +13,13 @@ class ChangeControllerTests: XCTestCase {
 
     func testAddChange() {
         let controller = ChangeController()
-        let range1 = NSMakeRange(1,1)
+        let range1 = NSMakeRange(100,20)
+        let range2 = NSMakeRange(95,10)
+
         controller.addChange(ChangeModel(range: range1, documentPath: "testDocument"))
+        controller.addChange(ChangeModel(range: range2, documentPath: "testDocument"))
 
-
+        XCTAssertTrue(controller.changes["testDocument"]?.count == 1)
     }
 
 }
