@@ -44,6 +44,7 @@
 		BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD60106C1AE588EA0049559B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeControllerTests.swift; sourceTree = "<group>"; };
+		BD6010741AE58A640049559B /* ChangeMarksTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeMarksTests-Bridging-Header.h"; path = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		BD60106A1AE588EA0049559B /* ChangeControllerTests */ = {
 			isa = PBXGroup;
 			children = (
+				BD6010741AE58A640049559B /* ChangeMarksTests-Bridging-Header.h */,
 				BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */,
 				BD60106B1AE588EA0049559B /* Supporting Files */,
 			);
@@ -328,6 +330,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -348,6 +351,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h";
 			};
 			name = Release;
 		};
