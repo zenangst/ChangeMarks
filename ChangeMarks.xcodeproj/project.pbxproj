@@ -18,6 +18,7 @@
 		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
 		BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */; };
 		BDF326E01AE4222A009015D8 /* ChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF326DF1AE4222A009015D8 /* ChangeModel.m */; };
+		BDF326E31AE42394009015D8 /* ChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF326E21AE42394009015D8 /* ChangeController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextCompletionSession+ChangeMarks.m"; sourceTree = "<group>"; };
 		BDF326DE1AE4222A009015D8 /* ChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeModel.h; sourceTree = "<group>"; };
 		BDF326DF1AE4222A009015D8 /* ChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeModel.m; sourceTree = "<group>"; };
+		BDF326E11AE42394009015D8 /* ChangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeController.h; sourceTree = "<group>"; };
+		BDF326E21AE42394009015D8 /* ChangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
 				BDF326DE1AE4222A009015D8 /* ChangeModel.h */,
 				BDF326DF1AE4222A009015D8 /* ChangeModel.m */,
+				BDF326E11AE42394009015D8 /* ChangeController.h */,
+				BDF326E21AE42394009015D8 /* ChangeController.m */,
 			);
 			path = ChangeMarks;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */,
 				BDF326E01AE4222A009015D8 /* ChangeModel.m in Sources */,
 				BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */,
+				BDF326E31AE42394009015D8 /* ChangeController.m in Sources */,
 				BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
 				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
 				BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */,

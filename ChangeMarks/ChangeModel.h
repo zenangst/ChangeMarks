@@ -10,10 +10,11 @@
 
 @interface ChangeModel : NSObject
 
+@property (nonatomic) NSString *documentPath;
 @property (nonatomic) NSUInteger location;
 @property (nonatomic) NSUInteger length;
 
-+ (ChangeModel *)withRange:(NSRange)range;
++ (ChangeModel *)withRange:(NSRange)range withDocumentPath:(NSString *)string;
 - (instancetype)initWithRange:(NSRange)range;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
-#import "ChangeModel.h"
+#import "ChangeController.h"
 
 static ChangeMarks *sharedPlugin;
 
@@ -21,7 +21,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSMenuItem *enabledMenuItem;
 @property (nonatomic) NSColor *changeMarkColor;
 @property (nonatomic) NSString *lastInsertedString;
-@property (nonatomic) NSMutableArray *changes;
+@property (nonatomic) ChangeController *changeController;
 
 @end
 
@@ -114,15 +114,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 #pragma mark - Getters
-
-- (NSMutableArray *)changes
-{
-    if (_changes) return _changes;
-
-    _changes = [NSMutableArray new];
-
-    return _changes;
-}
 
 - (id)currentEditor {
     NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
@@ -262,8 +253,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
-
-        [self.changes addObject:[ChangeModel withRange:range]];
+        [self.changeController addChange:[ChangeModel withRange:range withDocumentPath:@""]];
     }
 }
 

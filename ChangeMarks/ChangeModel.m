@@ -10,18 +10,18 @@
 
 @implementation ChangeModel
 
-+ (ChangeModel *)withRange:(NSRange)range
-{
-    ChangeModel *model = [[ChangeModel alloc] initWithRange:range];
++ (ChangeModel *)withRange:(NSRange)range withDocumentPath:(NSString *)path {
+    ChangeModel *model = [[ChangeModel alloc] initWithRange:range withDocumentPath:path];
 
     return model;
 }
 
-- (instancetype)initWithRange:(NSRange)range
+- (instancetype)initWithRange:(NSRange)range withDocumentPath:(NSString *)path
 {
     self = [super init];
     if (!self) return nil;
 
+    self.documentPath = path;
     self.location = range.location;
     self.length = range.length;
 
