@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */; };
 		BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */; };
+		BD60106E1AE588EA0049559B /* ChangeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */; };
 		BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */; };
 		BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */; };
 		BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B05011ACD7F67000FA861 /* IDEKit.framework */; };
@@ -40,6 +41,9 @@
 		BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorageDelegate-Protocol.h"; sourceTree = "<group>"; };
 		BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCompletionItem.h; sourceTree = "<group>"; };
 		BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEOpenQuicklyPattern.h; sourceTree = "<group>"; };
+		BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD60106C1AE588EA0049559B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeControllerTests.swift; sourceTree = "<group>"; };
 		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
@@ -64,6 +68,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BD6010661AE588EA0049559B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDA650C61A0406BD005BBC5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,10 +110,28 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		BD60106A1AE588EA0049559B /* ChangeControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */,
+				BD60106B1AE588EA0049559B /* Supporting Files */,
+			);
+			path = ChangeControllerTests;
+			sourceTree = "<group>";
+		};
+		BD60106B1AE588EA0049559B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BD60106C1AE588EA0049559B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BDA650BF1A0406BD005BBC5E = {
 			isa = PBXGroup;
 			children = (
 				BDA650CF1A0406BD005BBC5E /* ChangeMarks */,
+				BD60106A1AE588EA0049559B /* ChangeControllerTests */,
 				BDA650CA1A0406BD005BBC5E /* Frameworks */,
 				BDA650C91A0406BD005BBC5E /* Products */,
 			);
@@ -112,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */,
+				BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,6 +196,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BD6010681AE588EA0049559B /* ChangeControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD6010711AE588EA0049559B /* Build configuration list for PBXNativeTarget "ChangeControllerTests" */;
+			buildPhases = (
+				BD6010651AE588EA0049559B /* Sources */,
+				BD6010661AE588EA0049559B /* Frameworks */,
+				BD6010671AE588EA0049559B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChangeControllerTests;
+			productName = ChangeControllerTests;
+			productReference = BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BDA650C71A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDA650D91A0406BD005BBC5E /* Build configuration list for PBXNativeTarget "ChangeMarks" */;
@@ -192,6 +239,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = zenangst;
 				TargetAttributes = {
+					BD6010681AE588EA0049559B = {
+						CreatedOnToolsVersion = 6.3;
+					};
 					BDA650C71A0406BD005BBC5E = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -210,11 +260,19 @@
 			projectRoot = "";
 			targets = (
 				BDA650C71A0406BD005BBC5E /* ChangeMarks */,
+				BD6010681AE588EA0049559B /* ChangeControllerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BD6010671AE588EA0049559B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDA650C51A0406BD005BBC5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +284,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BD6010651AE588EA0049559B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD60106E1AE588EA0049559B /* ChangeControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDA650C41A0406BD005BBC5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,6 +309,48 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		BD60106F1AE588EA0049559B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ChangeControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BD6010701AE588EA0049559B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = ChangeControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		BDA650D71A0406BD005BBC5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -355,6 +463,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BD6010711AE588EA0049559B /* Build configuration list for PBXNativeTarget "ChangeControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD60106F1AE588EA0049559B /* Debug */,
+				BD6010701AE588EA0049559B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
