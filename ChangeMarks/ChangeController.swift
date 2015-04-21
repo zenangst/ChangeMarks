@@ -16,11 +16,18 @@ public class ChangeController {
 
     func addChange(change: ChangeModel) {
         if var changes = changes[change.documentPath] {
-            let intersectRange = intersect(change)
+            let intersectChange = intersect(change)
 
-            if (intersectRange.location > 0 && intersectRange.location > 0) {
-                
+            println(intersectChange?.location)
+            println(intersectChange?.length)
+            println(change.location);
+            println(change.length);
+
+            if intersectChange?.location < change.location {
+                change.location = intersectChange?.location
             }
+
+            println(change.location)
 
 //            oldChanges.append(change)
 //            changes[change.documentPath] = oldChanges
@@ -29,7 +36,7 @@ public class ChangeController {
         }
     }
 
-    func intersect(change: ChangeModel) -> NSRange {
+    func intersect(change: ChangeModel) -> ChangeModel? {
         var changes: [ChangeModel] = self.changes[change.documentPath]!
         for oldChange in changes {
             let a = NSMakeRange(change.location!, change.length!);
@@ -37,11 +44,11 @@ public class ChangeController {
             let intersection = NSIntersectionRange(a, b);
 
             if intersection.location > 0 && intersection.length > 0 {
-                return intersection
+                return oldChange
             }
         }
 
-        return NSMakeRange(0,0)
+        return nil
     }
 
 }
