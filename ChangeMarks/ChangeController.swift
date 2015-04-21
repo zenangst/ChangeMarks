@@ -16,21 +16,23 @@ public class ChangeController {
 
     func addChange(change: ChangeModel) {
         if var changes = changes[change.documentPath] {
-            let intersectChange = intersect(change)
+            if let intersectChange = intersect(change) {
 
-            println(intersectChange?.location)
-            println(intersectChange?.length)
-            println(change.location);
-            println(change.length);
+                if intersectChange.location < change.location {
+                    change.location = intersectChange.location
+                }
 
-            if intersectChange?.location < change.location {
-                change.location = intersectChange?.location
+                let newRangeLength = intersectChange.location! + intersectChange.length!
+                let oldRangeLength = change.location! + intersectChange.length!
+
+                if (newRangeLength > oldRangeLength) {
+                    change.length = newRangeLength - change.location!
+                }
+
+            } else {
+                changes.append(change)
+               //changes[change.documentPath] = changes
             }
-
-            println(change.location)
-
-//            oldChanges.append(change)
-//            changes[change.documentPath] = oldChanges
         } else {
             changes[change.documentPath] = [change]
         }
