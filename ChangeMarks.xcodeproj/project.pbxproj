@@ -48,7 +48,7 @@
 		BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeControllerTests.swift; sourceTree = "<group>"; };
 		BD6010741AE58A640049559B /* ChangeMarksTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeMarksTests-Bridging-Header.h"; path = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		BD6010791AE58D530049559B /* ChangeMarks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChangeMarks-Bridging-Header.h"; sourceTree = "<group>"; };
-		BD60107A1AE58D540049559B /* ChangeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; };
+		BD60107A1AE58D540049559B /* ChangeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		BD60107D1AE58D620049559B /* ChangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeModel.swift; sourceTree = "<group>"; };
 		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
@@ -483,6 +483,7 @@
 				BD6010701AE588EA0049559B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */ = {
 			isa = XCConfigurationList;
