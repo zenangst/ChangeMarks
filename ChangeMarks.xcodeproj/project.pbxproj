@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */; };
 		BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */; };
-		BD60106E1AE588EA0049559B /* ChangeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */; };
-		BD60107B1AE58D540049559B /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD60107A1AE58D540049559B /* ChangeController.swift */; };
-		BD60107C1AE58D540049559B /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD60107A1AE58D540049559B /* ChangeController.swift */; };
-		BD60107E1AE58D620049559B /* ChangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD60107D1AE58D620049559B /* ChangeModel.swift */; };
-		BD60107F1AE58D620049559B /* ChangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD60107D1AE58D620049559B /* ChangeModel.swift */; };
+		BD66253A1AED5708001DB8AD /* ChangeMarksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6625391AED5708001DB8AD /* ChangeMarksTests.m */; };
+		BD66253E1AED5808001DB8AD /* ChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D751AED568E005D3268 /* ChangeModel.m */; };
+		BD66253F1AED5808001DB8AD /* ChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D621AED55E1005D3268 /* ChangeController.m */; };
 		BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */; };
 		BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */; };
 		BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B05011ACD7F67000FA861 /* IDEKit.framework */; };
@@ -22,6 +20,8 @@
 		BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */; };
 		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
 		BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */; };
+		BDBF7D651AED55E1005D3268 /* ChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D621AED55E1005D3268 /* ChangeController.m */; };
+		BDBF7D761AED568E005D3268 /* ChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D751AED568E005D3268 /* ChangeModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,13 +43,9 @@
 		BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorageDelegate-Protocol.h"; sourceTree = "<group>"; };
 		BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCompletionItem.h; sourceTree = "<group>"; };
 		BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEOpenQuicklyPattern.h; sourceTree = "<group>"; };
-		BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD60106C1AE588EA0049559B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeControllerTests.swift; sourceTree = "<group>"; };
-		BD6010741AE58A640049559B /* ChangeMarksTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeMarksTests-Bridging-Header.h"; path = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		BD6010791AE58D530049559B /* ChangeMarks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChangeMarks-Bridging-Header.h"; sourceTree = "<group>"; };
-		BD60107A1AE58D540049559B /* ChangeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; tabWidth = 2; };
-		BD60107D1AE58D620049559B /* ChangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeModel.swift; sourceTree = "<group>"; };
+		BD6625351AED5708001DB8AD /* ChangeMarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeMarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD6625381AED5708001DB8AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD6625391AED5708001DB8AD /* ChangeMarksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarksTests.m; sourceTree = "<group>"; };
 		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
@@ -67,10 +63,14 @@
 		BDA650D51A0406BD005BBC5E /* ChangeMarks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarks.m; sourceTree = "<group>"; };
 		BDA83AEA1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionSession+ChangeMarks.h"; sourceTree = "<group>"; };
 		BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextCompletionSession+ChangeMarks.m"; sourceTree = "<group>"; };
+		BDBF7D611AED55E1005D3268 /* ChangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeController.h; sourceTree = "<group>"; };
+		BDBF7D621AED55E1005D3268 /* ChangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeController.m; sourceTree = "<group>"; };
+		BDBF7D741AED568E005D3268 /* ChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeModel.h; sourceTree = "<group>"; };
+		BDBF7D751AED568E005D3268 /* ChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BD6010661AE588EA0049559B /* Frameworks */ = {
+		BD6625321AED5708001DB8AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -112,20 +112,19 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		BD60106A1AE588EA0049559B /* ChangeControllerTests */ = {
+		BD6625361AED5708001DB8AD /* ChangeMarksTests */ = {
 			isa = PBXGroup;
 			children = (
-				BD6010741AE58A640049559B /* ChangeMarksTests-Bridging-Header.h */,
-				BD60106D1AE588EA0049559B /* ChangeControllerTests.swift */,
-				BD60106B1AE588EA0049559B /* Supporting Files */,
+				BD6625391AED5708001DB8AD /* ChangeMarksTests.m */,
+				BD6625371AED5708001DB8AD /* Supporting Files */,
 			);
-			path = ChangeControllerTests;
+			path = ChangeMarksTests;
 			sourceTree = "<group>";
 		};
-		BD60106B1AE588EA0049559B /* Supporting Files */ = {
+		BD6625371AED5708001DB8AD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BD60106C1AE588EA0049559B /* Info.plist */,
+				BD6625381AED5708001DB8AD /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -134,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA650CF1A0406BD005BBC5E /* ChangeMarks */,
-				BD60106A1AE588EA0049559B /* ChangeControllerTests */,
+				BD6625361AED5708001DB8AD /* ChangeMarksTests */,
 				BDA650CA1A0406BD005BBC5E /* Frameworks */,
 				BDA650C91A0406BD005BBC5E /* Products */,
 			);
@@ -144,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */,
-				BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */,
+				BD6625351AED5708001DB8AD /* ChangeMarksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,6 +164,10 @@
 		BDA650CF1A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXGroup;
 			children = (
+				BDBF7D741AED568E005D3268 /* ChangeModel.h */,
+				BDBF7D751AED568E005D3268 /* ChangeModel.m */,
+				BDBF7D611AED55E1005D3268 /* ChangeController.h */,
+				BDBF7D621AED55E1005D3268 /* ChangeController.m */,
 				BD50BC8F1ACD85DE008B439B /* Headers */,
 				BDA650D01A0406BD005BBC5E /* Supporting Files */,
 				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
@@ -178,9 +181,6 @@
 				BD8B05131ACD804D000FA861 /* NSTextView+ChangeMarks.h */,
 				BD8B05141ACD804D000FA861 /* NSTextView+ChangeMarks.m */,
 				BD8B05171ACD804D000FA861 /* XcodePrivate.h */,
-				BD60107A1AE58D540049559B /* ChangeController.swift */,
-				BD60107D1AE58D620049559B /* ChangeModel.swift */,
-				BD6010791AE58D530049559B /* ChangeMarks-Bridging-Header.h */,
 			);
 			path = ChangeMarks;
 			sourceTree = "<group>";
@@ -198,21 +198,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BD6010681AE588EA0049559B /* ChangeControllerTests */ = {
+		BD6625341AED5708001DB8AD /* ChangeMarksTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BD6010711AE588EA0049559B /* Build configuration list for PBXNativeTarget "ChangeControllerTests" */;
+			buildConfigurationList = BD66253B1AED5708001DB8AD /* Build configuration list for PBXNativeTarget "ChangeMarksTests" */;
 			buildPhases = (
-				BD6010651AE588EA0049559B /* Sources */,
-				BD6010661AE588EA0049559B /* Frameworks */,
-				BD6010671AE588EA0049559B /* Resources */,
+				BD6625311AED5708001DB8AD /* Sources */,
+				BD6625321AED5708001DB8AD /* Frameworks */,
+				BD6625331AED5708001DB8AD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ChangeControllerTests;
-			productName = ChangeControllerTests;
-			productReference = BD6010691AE588EA0049559B /* ChangeControllerTests.xctest */;
+			name = ChangeMarksTests;
+			productName = ChangeMarksTests;
+			productReference = BD6625351AED5708001DB8AD /* ChangeMarksTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		BDA650C71A0406BD005BBC5E /* ChangeMarks */ = {
@@ -241,8 +241,8 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = zenangst;
 				TargetAttributes = {
-					BD6010681AE588EA0049559B = {
-						CreatedOnToolsVersion = 6.3;
+					BD6625341AED5708001DB8AD = {
+						CreatedOnToolsVersion = 6.3.1;
 					};
 					BDA650C71A0406BD005BBC5E = {
 						CreatedOnToolsVersion = 6.1;
@@ -262,13 +262,13 @@
 			projectRoot = "";
 			targets = (
 				BDA650C71A0406BD005BBC5E /* ChangeMarks */,
-				BD6010681AE588EA0049559B /* ChangeControllerTests */,
+				BD6625341AED5708001DB8AD /* ChangeMarksTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BD6010671AE588EA0049559B /* Resources */ = {
+		BD6625331AED5708001DB8AD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -286,13 +286,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BD6010651AE588EA0049559B /* Sources */ = {
+		BD6625311AED5708001DB8AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD60106E1AE588EA0049559B /* ChangeControllerTests.swift in Sources */,
-				BD60107F1AE58D620049559B /* ChangeModel.swift in Sources */,
-				BD60107C1AE58D540049559B /* ChangeController.swift in Sources */,
+				BD66253E1AED5808001DB8AD /* ChangeModel.m in Sources */,
+				BD66253F1AED5808001DB8AD /* ChangeController.m in Sources */,
+				BD66253A1AED5708001DB8AD /* ChangeMarksTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,20 +300,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD60107E1AE58D620049559B /* ChangeModel.swift in Sources */,
 				BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */,
-				BD60107B1AE58D540049559B /* ChangeController.swift in Sources */,
 				BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */,
 				BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
+				BDBF7D761AED568E005D3268 /* ChangeModel.m in Sources */,
 				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
 				BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */,
+				BDBF7D651AED55E1005D3268 /* ChangeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		BD60106F1AE588EA0049559B /* Debug */ = {
+		BD66253C1AED5708001DB8AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -327,17 +327,15 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ChangeControllerTests/Info.plist;
+				INFOPLIST_FILE = ChangeMarksTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		BD6010701AE588EA0049559B /* Release */ = {
+		BD66253D1AED5708001DB8AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -348,12 +346,11 @@
 					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = ChangeControllerTests/Info.plist;
+				INFOPLIST_FILE = ChangeMarksTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "ChangeMarksTests/ChangeMarksTests-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -444,7 +441,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ChangeMarks/ChangeMarks-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -468,7 +464,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ChangeMarks/ChangeMarks-Bridging-Header.h";
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
@@ -476,14 +471,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BD6010711AE588EA0049559B /* Build configuration list for PBXNativeTarget "ChangeControllerTests" */ = {
+		BD66253B1AED5708001DB8AD /* Build configuration list for PBXNativeTarget "ChangeMarksTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BD60106F1AE588EA0049559B /* Debug */,
-				BD6010701AE588EA0049559B /* Release */,
+				BD66253C1AED5708001DB8AD /* Debug */,
+				BD66253D1AED5708001DB8AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */ = {
 			isa = XCConfigurationList;

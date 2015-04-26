@@ -8,6 +8,8 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
+#import "ChangeController.h"
+#import "ChangeModel.h"
 
 static ChangeMarks *sharedPlugin;
 
@@ -181,6 +183,16 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
     if (self.enabledMenuItem.state == 0) {
         [self clearChangeMarks];
+
+        IDESourceCodeEditor *editor = [self currentEditor];
+        id document = [editor sourceCodeDocument];
+        NSArray *changes = [self.changeController changesForDocument:[[document fileURL] absoluteString]];
+
+        if (changes) {
+            for (ChangeModel *change in changes) {
+                [self colorBackgroundWithRange:change.range];
+            }
+        }
     }
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -252,12 +264,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
-
-        NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
-        NSDocument *document = currentWindowController.document;
-        NSLog(@"document: %@", document.fileURL);
-
-        [self.changeController addChange:[ChangeModel withRange:range withDocumentPath:@""]];
     }
 }
 
@@ -268,6 +274,10 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
+
+        IDESourceCodeEditor *editor = [self currentEditor];
+        id document = [editor sourceCodeDocument];
+        [self.changeController addChange:[ChangeModel withRange:range documentPath:[[document fileURL] absoluteString]]];
     }
 }
 

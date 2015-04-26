@@ -9,12 +9,12 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDA748731AE587F600173468"
+               BlueprintIdentifier = "BD6625341AED5708001DB8AD"
                BuildableName = "ChangeMarksTests.xctest"
                BlueprintName = "ChangeMarksTests"
                ReferencedContainer = "container:ChangeMarks.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDA748731AE587F600173468"
+               BlueprintIdentifier = "BD6625341AED5708001DB8AD"
                BuildableName = "ChangeMarksTests.xctest"
                BlueprintName = "ChangeMarksTests"
                ReferencedContainer = "container:ChangeMarks.xcodeproj">
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA748731AE587F600173468"
-            BuildableName = "ChangeMarksTests.xctest"
-            BlueprintName = "ChangeMarksTests"
+            BlueprintIdentifier = "BD6010681AE588EA0049559B"
+            BuildableName = "ChangeControllerTests.xctest"
+            BlueprintName = "ChangeControllerTests"
             ReferencedContainer = "container:ChangeMarks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -58,15 +58,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA748731AE587F600173468"
-            BuildableName = "ChangeMarksTests.xctest"
-            BlueprintName = "ChangeMarksTests"
-            ReferencedContainer = "container:ChangeMarks.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -79,7 +70,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA748731AE587F600173468"
+            BlueprintIdentifier = "BD6625341AED5708001DB8AD"
             BuildableName = "ChangeMarksTests.xctest"
             BlueprintName = "ChangeMarksTests"
             ReferencedContainer = "container:ChangeMarks.xcodeproj">
