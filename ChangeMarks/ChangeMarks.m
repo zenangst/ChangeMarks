@@ -8,7 +8,6 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
-#import "ChangeController.h"
 
 static ChangeMarks *sharedPlugin;
 
