@@ -252,6 +252,11 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
+
+        NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
+        NSDocument *document = currentWindowController.document;
+        NSLog(@"document: %@", document.fileURL);
+
         [self.changeController addChange:[ChangeModel withRange:range withDocumentPath:@""]];
     }
 }
