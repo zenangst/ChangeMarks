@@ -28,29 +28,31 @@
 #pragma mark - Public methods
 
 - (void)addChange:(ChangeModel *)change {
-    NSMutableArray *changes = self.changes[change.documentPath];
-    if (changes.count > 0) {
-        ChangeModel *intersectChange = [self intersect:change];
-        if (intersectChange) {
-            NSUInteger newRangeLength = intersectChange.location + intersectChange.length;
-            NSUInteger oldRangeLength = change.location + change.length;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *changes = [self.changes[change.documentPath] copy];
+        if (changes.count > 0) {
+            ChangeModel *intersectChange = [self intersect:change];
+            if (intersectChange) {
+                NSUInteger newRangeLength = intersectChange.location + intersectChange.length;
+                NSUInteger oldRangeLength = change.location + change.length;
 
-            if (change.location < intersectChange.location) {
-                intersectChange.location = change.location;
-            }
+                if (change.location < intersectChange.location) {
+                    intersectChange.location = change.location;
+                }
 
-            if (newRangeLength > oldRangeLength) {
-                intersectChange.length = newRangeLength - intersectChange.location;
+                if (newRangeLength > oldRangeLength) {
+                    intersectChange.length = newRangeLength - intersectChange.location;
+                } else {
+                    intersectChange.length = oldRangeLength - intersectChange.location;
+                }
             } else {
-                intersectChange.length = oldRangeLength - intersectChange.location;
+                [self.changes[change.documentPath] addObject:change];
             }
         } else {
-            [self.changes[change.documentPath] addObject:change];
+            NSMutableArray *changes = [NSMutableArray arrayWithObject:change];
+            self.changes[change.documentPath] = changes;
         }
-    } else {
-        NSMutableArray *changes = [NSMutableArray arrayWithObject:change];
-        self.changes[change.documentPath] = changes;
-    }
+    });
 }
 
 - (void)removeChange:(ChangeModel *)change {
@@ -58,12 +60,36 @@
     [changes removeObject:change];
 }
 
-- (NSArray *)changesForDocument:(NSString *)path {
-    return self.changes[path];
-}
-
 - (void)clearChangeMarks:(NSString *)path {
     [self.changes removeObjectForKey:path];
+}
+
+- (NSRange)nextChange:(NSRange)range documentPath:(NSString *)string {
+    NSArray *changes = [self.changes[string] copy];
+
+    for (ChangeModel *change in changes) {
+        if (change.location > range.location) {
+            return change.range;
+        }
+    }
+
+    return range;
+}
+
+- (NSRange)previousChange:(NSRange)range  documentPath:(NSString *)string {
+    NSArray *changes = [self.changes[string] copy];
+
+    for (ChangeModel *change in changes) {
+        if (change.location > range.location) {
+            return change.range;
+        }
+    }
+
+    return range;
+}
+
+- (NSArray *)changesForDocument:(NSString *)path {
+    return self.changes[path];
 }
 
 #pragma mark - Private methods

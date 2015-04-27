@@ -121,6 +121,22 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
             menuItem;
         })];
 
+        [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Next Change Marks"
+                                                              action:@selector(nextChangeMark)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
+
+        [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Previous Change Marks"
+                                                              action:@selector(previousChangeMark)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
+
         NSString *versionString = [[NSBundle bundleForClass:[self class]] objectForInfoDictionaryKey:@"CFBundleVersion"];
         NSString *title = [NSString stringWithFormat:@"Change Marks (%@)", versionString];
         NSMenuItem *pluginMenuItem = [[NSMenuItem alloc] initWithTitle:title
@@ -197,6 +213,24 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 #pragma mark - Actions
+
+- (void)nextChangeMark {
+    NSString *documentPath = [self currentDocumentPath];
+    NSRange selectedRange = [[self textView] selectedRange];
+
+    NSRange newRange = [self.changeController nextChange:selectedRange documentPath:documentPath];
+
+    [[self textView] setSelectedRange:newRange];
+}
+
+- (void)previousChangeMark {
+    NSString *documentPath = [self currentDocumentPath];
+    NSRange selectedRange = [[self textView] selectedRange];
+
+    NSRange newRange = [self.changeController previousChange:selectedRange documentPath:documentPath];
+
+    [[self textView] setSelectedRange:newRange];
+}
 
 - (void)clearChangeMarksAction {
     [self clearChangeMarks];
@@ -315,7 +349,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)restoreChanges {
     NSString *documenthPath = [self currentDocumentPath];
     if (documenthPath != nil) {
-        NSArray *changes = [self.changeController changesForDocument:documenthPath];
+        NSArray *changes = [[self.changeController changesForDocument:documenthPath] copy];
         if (changes.count > 0) {
             for (ChangeModel *change in changes) {
                 NSUInteger documentLength = [[[self textView] string] length];
