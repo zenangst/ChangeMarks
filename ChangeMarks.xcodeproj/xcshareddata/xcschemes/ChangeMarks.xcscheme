@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "890A4B3E171F031300AFE577"
+               BlueprintIdentifier = "BDA650C71A0406BD005BBC5E"
                BuildableName = "ChangeMarks.xcplugin"
                BlueprintName = "ChangeMarks"
                ReferencedContainer = "container:ChangeMarks.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
+               BlueprintIdentifier = "BD6625341AED5708001DB8AD"
                BuildableName = "ChangeMarksTests.xctest"
                BlueprintName = "ChangeMarksTests"
                ReferencedContainer = "container:ChangeMarks.xcodeproj">
@@ -42,6 +42,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BD6625341AED5708001DB8AD"
+               BuildableName = "ChangeMarksTests.xctest"
+               BlueprintName = "ChangeMarksTests"
+               ReferencedContainer = "container:ChangeMarks.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -56,12 +66,13 @@
       allowLocationSimulation = "NO"
       viewDebuggingEnabled = "No">
       <PathRunnable
+         runnableDebuggingMode = "0"
          FilePath = "/Applications/Xcode.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "890A4B3E171F031300AFE577"
+            BlueprintIdentifier = "BDA650C71A0406BD005BBC5E"
             BuildableName = "ChangeMarks.xcplugin"
             BlueprintName = "ChangeMarks"
             ReferencedContainer = "container:ChangeMarks.xcodeproj">

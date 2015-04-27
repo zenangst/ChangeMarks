@@ -478,6 +478,7 @@
 				BD66253D1AED5708001DB8AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */ = {
 			isa = XCConfigurationList;
