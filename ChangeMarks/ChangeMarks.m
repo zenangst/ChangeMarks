@@ -303,7 +303,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
         [self.changeController addChange:[ChangeModel withRange:range
                                                    documentPath:[self currentDocumentPath]]];
-        NSLog(@"changecount: %ld", [[self.changeController changesForDocument:[self currentDocumentPath]] count]);
     }
 }
 
