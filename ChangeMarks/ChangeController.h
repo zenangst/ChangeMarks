@@ -13,5 +13,6 @@
 
 - (void)addChange:(ChangeModel *)model;
 - (NSArray *)changesForDocument:(NSString *)path;
+- (void)clearChangeMarks:(NSString *)path;
 
 @end

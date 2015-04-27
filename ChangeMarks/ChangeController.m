@@ -58,6 +58,10 @@
     return self.changes[path];
 }
 
+- (void)clearChangeMarks:(NSString *)path {
+    [self.changes removeObjectForKey:path];
+}
+
 #pragma mark - Private methods
 
 - (ChangeModel *)intersect:(ChangeModel *)change {

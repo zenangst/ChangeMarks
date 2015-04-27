@@ -23,6 +23,11 @@
     swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_insertText:"));
 
     method_exchangeImplementations(original, swizzle);
+
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"becomeFirstResponder"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_becomeFirstResponder"));
+
+    method_exchangeImplementations(original, swizzle);
 }
 
 - (BOOL)zen_readSelectionFromPasteboard:(NSPasteboard *)pboard {
@@ -41,6 +46,12 @@
     [self zen_insertText:insertString];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddNotification object:insertString];
+}
+
+- (void)zen_becomeFirstResponder {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkFirstResponderChanged object:self];
+
+    return [self zen_becomeFirstResponder];
 }
 
 @end
