@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */; };
 		BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */; };
+		BD66253A1AED5708001DB8AD /* ChangeMarksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6625391AED5708001DB8AD /* ChangeMarksTests.m */; };
+		BD66253E1AED5808001DB8AD /* ChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D751AED568E005D3268 /* ChangeModel.m */; };
+		BD66253F1AED5808001DB8AD /* ChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D621AED55E1005D3268 /* ChangeController.m */; };
 		BD8B04FE1ACD7F58000FA861 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */; };
 		BD8B05001ACD7F63000FA861 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */; };
 		BD8B05021ACD7F67000FA861 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B05011ACD7F67000FA861 /* IDEKit.framework */; };
@@ -17,6 +20,8 @@
 		BDA650D31A0406BD005BBC5E /* ChangeMarks.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = BDA650D21A0406BD005BBC5E /* ChangeMarks.xcscheme */; };
 		BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA650D51A0406BD005BBC5E /* ChangeMarks.m */; };
 		BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */; };
+		BDBF7D651AED55E1005D3268 /* ChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D621AED55E1005D3268 /* ChangeController.m */; };
+		BDBF7D761AED568E005D3268 /* ChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D751AED568E005D3268 /* ChangeModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,9 @@
 		BD50BC9D1ACD85DE008B439B /* DVTTextStorageDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorageDelegate-Protocol.h"; sourceTree = "<group>"; };
 		BD50BC9E1ACD85DE008B439B /* IDEIndexCompletionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEIndexCompletionItem.h; sourceTree = "<group>"; };
 		BD50BC9F1ACD85DE008B439B /* IDEOpenQuicklyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEOpenQuicklyPattern.h; sourceTree = "<group>"; };
+		BD6625351AED5708001DB8AD /* ChangeMarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChangeMarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD6625381AED5708001DB8AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD6625391AED5708001DB8AD /* ChangeMarksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarksTests.m; sourceTree = "<group>"; };
 		BD8B04FD1ACD7F58000FA861 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		BD8B04FF1ACD7F63000FA861 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		BD8B05011ACD7F67000FA861 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
@@ -55,9 +63,20 @@
 		BDA650D51A0406BD005BBC5E /* ChangeMarks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeMarks.m; sourceTree = "<group>"; };
 		BDA83AEA1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextCompletionSession+ChangeMarks.h"; sourceTree = "<group>"; };
 		BDA83AEB1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextCompletionSession+ChangeMarks.m"; sourceTree = "<group>"; };
+		BDBF7D611AED55E1005D3268 /* ChangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeController.h; sourceTree = "<group>"; };
+		BDBF7D621AED55E1005D3268 /* ChangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeController.m; sourceTree = "<group>"; };
+		BDBF7D741AED568E005D3268 /* ChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeModel.h; sourceTree = "<group>"; };
+		BDBF7D751AED568E005D3268 /* ChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BD6625321AED5708001DB8AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDA650C61A0406BD005BBC5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,10 +112,28 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		BD6625361AED5708001DB8AD /* ChangeMarksTests */ = {
+			isa = PBXGroup;
+			children = (
+				BD6625391AED5708001DB8AD /* ChangeMarksTests.m */,
+				BD6625371AED5708001DB8AD /* Supporting Files */,
+			);
+			path = ChangeMarksTests;
+			sourceTree = "<group>";
+		};
+		BD6625371AED5708001DB8AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BD6625381AED5708001DB8AD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BDA650BF1A0406BD005BBC5E = {
 			isa = PBXGroup;
 			children = (
 				BDA650CF1A0406BD005BBC5E /* ChangeMarks */,
+				BD6625361AED5708001DB8AD /* ChangeMarksTests */,
 				BDA650CA1A0406BD005BBC5E /* Frameworks */,
 				BDA650C91A0406BD005BBC5E /* Products */,
 			);
@@ -106,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA650C81A0406BD005BBC5E /* ChangeMarks.xcplugin */,
+				BD6625351AED5708001DB8AD /* ChangeMarksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +164,10 @@
 		BDA650CF1A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXGroup;
 			children = (
+				BDBF7D741AED568E005D3268 /* ChangeModel.h */,
+				BDBF7D751AED568E005D3268 /* ChangeModel.m */,
+				BDBF7D611AED55E1005D3268 /* ChangeController.h */,
+				BDBF7D621AED55E1005D3268 /* ChangeController.m */,
 				BD50BC8F1ACD85DE008B439B /* Headers */,
 				BDA650D01A0406BD005BBC5E /* Supporting Files */,
 				BDA650D41A0406BD005BBC5E /* ChangeMarks.h */,
@@ -156,6 +198,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BD6625341AED5708001DB8AD /* ChangeMarksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD66253B1AED5708001DB8AD /* Build configuration list for PBXNativeTarget "ChangeMarksTests" */;
+			buildPhases = (
+				BD6625311AED5708001DB8AD /* Sources */,
+				BD6625321AED5708001DB8AD /* Frameworks */,
+				BD6625331AED5708001DB8AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChangeMarksTests;
+			productName = ChangeMarksTests;
+			productReference = BD6625351AED5708001DB8AD /* ChangeMarksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BDA650C71A0406BD005BBC5E /* ChangeMarks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDA650D91A0406BD005BBC5E /* Build configuration list for PBXNativeTarget "ChangeMarks" */;
@@ -182,6 +241,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = zenangst;
 				TargetAttributes = {
+					BD6625341AED5708001DB8AD = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					BDA650C71A0406BD005BBC5E = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -200,11 +262,19 @@
 			projectRoot = "";
 			targets = (
 				BDA650C71A0406BD005BBC5E /* ChangeMarks */,
+				BD6625341AED5708001DB8AD /* ChangeMarksTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BD6625331AED5708001DB8AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDA650C51A0406BD005BBC5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,6 +286,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BD6625311AED5708001DB8AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD66253E1AED5808001DB8AD /* ChangeModel.m in Sources */,
+				BD66253F1AED5808001DB8AD /* ChangeController.m in Sources */,
+				BD66253A1AED5708001DB8AD /* ChangeMarksTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDA650C41A0406BD005BBC5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,14 +303,57 @@
 				BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */,
 				BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */,
 				BDA83AEC1AD19AAE009C4A56 /* DVTTextCompletionSession+ChangeMarks.m in Sources */,
+				BDBF7D761AED568E005D3268 /* ChangeModel.m in Sources */,
 				BDA650D61A0406BD005BBC5E /* ChangeMarks.m in Sources */,
 				BD8B051A1ACD804D000FA861 /* NSTextView+ChangeMarks.m in Sources */,
+				BDBF7D651AED55E1005D3268 /* ChangeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		BD66253C1AED5708001DB8AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ChangeMarksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BD66253D1AED5708001DB8AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = ChangeMarksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		BDA650D71A0406BD005BBC5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -303,6 +426,7 @@
 		BDA650DA1A0406BD005BBC5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
@@ -314,8 +438,10 @@
 				GCC_PREFIX_HEADER = "ChangeMarks/ChangeMarksPlugIn-Prefix.pch";
 				INFOPLIST_FILE = ChangeMarks/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -323,6 +449,7 @@
 		BDA650DB1A0406BD005BBC5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
@@ -334,6 +461,7 @@
 				GCC_PREFIX_HEADER = "ChangeMarks/ChangeMarksPlugIn-Prefix.pch";
 				INFOPLIST_FILE = ChangeMarks/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
@@ -343,6 +471,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BD66253B1AED5708001DB8AD /* Build configuration list for PBXNativeTarget "ChangeMarksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD66253C1AED5708001DB8AD /* Debug */,
+				BD66253D1AED5708001DB8AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		BDA650C31A0406BD005BBC5E /* Build configuration list for PBXProject "ChangeMarks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

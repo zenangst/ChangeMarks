@@ -8,6 +8,8 @@
 
 #import <objc/objc-runtime.h>
 #import "ChangeMarks.h"
+#import "ChangeController.h"
+#import "ChangeModel.h"
 
 static ChangeMarks *sharedPlugin;
 
@@ -20,13 +22,16 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSMenuItem *enabledMenuItem;
 @property (nonatomic) NSColor *changeMarkColor;
 @property (nonatomic) NSString *lastInsertedString;
+@property (nonatomic) ChangeController *changeController;
+@property (nonatomic) id lastResponder;
 
 @end
 
 @implementation ChangeMarks
 
-+ (void)pluginDidLoad:(NSBundle *)plugin
-{
+#pragma mark - Class methods
+
++ (void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     if (![currentApplicationName isEqual:@"Xcode"]) return;
@@ -36,18 +41,19 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     });
 }
 
-+ (instancetype)sharedPlugin
-{
++ (instancetype)sharedPlugin {
     return sharedPlugin;
 }
 
-- (void)dealloc
-{
+#pragma mark - Deallocation
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (instancetype)init
-{
+#pragma mark - Initialization
+
+- (instancetype)init {
     self = [super init];
     if (!self) return nil;
 
@@ -66,11 +72,15 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                  name:kChangeMarkAddRangeNotification
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(firstResponderChanged:)
+                                                 name:kChangeMarkFirstResponderChanged
+                                               object:nil];
+
     return self;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
-{
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
     NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
 
     if (editMenuItem) {
@@ -99,7 +109,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
         [pluginMenu addItem:({
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Clear Change Marks"
-                                                              action:@selector(clearChangeMarks)
+                                                              action:@selector(clearChangeMarksAction)
                                                        keyEquivalent:@""];
             menuItem.target = self;
             menuItem;
@@ -118,8 +128,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 #pragma mark - Getters
 
-- (id)currentEditor
-{
+- (id)currentEditor {
     NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
 
     if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
@@ -132,8 +141,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return nil;
 }
 
-- (NSTextView *)textView
-{
+- (NSTextView *)textView {
     if ([[self currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
         IDESourceCodeEditor *editor = [self currentEditor];
         return editor.textView;
@@ -147,8 +155,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return nil;
 }
 
-- (NSColor *)changeMarkColor
-{
+- (NSColor *)changeMarkColor {
     NSData *colorData = [[NSUserDefaults standardUserDefaults] dataForKey:kChangeMarksColor];
 
     if (!colorData) {
@@ -163,10 +170,31 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return _changeMarkColor;
 }
 
+- (ChangeController *)changeController
+{
+    if (_changeController) return _changeController;
+
+    _changeController = [ChangeController new];
+
+    return _changeController;
+}
+
+- (NSString *)currentDocumentPath
+{
+    IDESourceCodeEditor *editor = [self currentEditor];
+    id document = [editor sourceCodeDocument];
+
+    return [[document fileURL] absoluteString];
+}
+
 #pragma mark - Actions
 
-- (void)adjustColor:(id)sender
-{
+- (void)clearChangeMarksAction {
+    [self clearChangeMarks];
+    [self.changeController clearChangeMarks:[self currentDocumentPath]];
+}
+
+- (void)adjustColor:(id)sender {
     NSColorPanel *panel = (NSColorPanel *)sender;
 
     if ([[NSApp keyWindow] firstResponder] == self.textView &&
@@ -179,16 +207,18 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         self.changeMarkColor = panel.color;
 
         [self clearChangeMarks];
+        [self restoreChanges];
     }
 }
 
-- (void)toggleChangeMarks
-{
+- (void)toggleChangeMarks {
     [self clearChangeMarks];
 
     self.enabledMenuItem.state = (self.enabledMenuItem.state == 1) ? 0 : 1;
 
-    if (self.enabledMenuItem.state == 0) {
+    if (self.enabledMenuItem.state) {
+        [self restoreChanges];
+    } else {
         [self clearChangeMarks];
     }
 
@@ -197,8 +227,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     [userDefaults synchronize];
 }
 
-- (void)showColorPanel
-{
+- (void)showColorPanel {
     NSColorPanel *panel = [NSColorPanel sharedColorPanel];
     panel.color = self.changeMarkColor;
     panel.target = self;
@@ -210,26 +239,9 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                  name:NSWindowWillCloseNotification object:nil];
 }
 
-- (void)clearChangeMarks
-{
-    NSRange range;
-
-    if ([[self textView] selectedRange].length > 0) {
-        range = [[self textView] selectedRange];
-    } else {
-        range = NSMakeRange(0,[[[self textView] string] length]);
-    }
-
-    NSLayoutManager *layoutManager = [[self textView] layoutManager];
-
-    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                          forCharacterRange:range];
-}
-
 #pragma mark - Notifications
 
-- (void)addChangeMark:(NSNotification *)notification
-{
+- (void)addChangeMark:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSString class]]) {
         NSString *string = (NSString *)notification.object;
         NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -257,8 +269,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (void)addChangeMarkRange:(NSNotification *)notification
-{
+- (void)addChangeMarkRange:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *)notification.object;
         NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
@@ -268,21 +279,56 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (void)colorBackgroundWithRange:(NSRange)range
-{
+- (void)firstResponderChanged:(NSNotification *)notification {
+
+    if (![self.lastResponder isEqual:notification.object]) {
+        [self clearChangeMarks];
+        [self restoreChanges];
+    }
+
+    self.lastResponder = notification.object;
+}
+
+#pragma mark - Private methods
+
+- (void)colorBackgroundWithRange:(NSRange)range {
     if (self.enabledMenuItem.state == 1 && [self validResponder]) {
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
+
+        [self.changeController addChange:[ChangeModel withRange:range
+                                                   documentPath:[self currentDocumentPath]]];
     }
 }
 
-#pragma mark - Private methods
+- (void)restoreChanges {
+    NSArray *changes = [self.changeController changesForDocument:[self currentDocumentPath]];
+    if (changes) {
+        for (ChangeModel *change in changes) {
+            [self colorBackgroundWithRange:change.range];
+        }
+    }
+}
 
-- (BOOL)validResponder
-{
+- (void)clearChangeMarks {
+    NSRange range;
+
+    if ([[self textView] selectedRange].length > 0) {
+        range = [[self textView] selectedRange];
+    } else {
+        range = NSMakeRange(0,[[[self textView] string] length]);
+    }
+
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
+
+    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                          forCharacterRange:range];
+}
+
+- (BOOL)validResponder {
     NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
     NSString *responderClass = NSStringFromClass(firstResponder.class);
     NSArray *validClasses = @[@"DVTSourceTextView", @"IDEPlaygroundTextView"];
@@ -290,8 +336,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return ([validClasses containsObject:responderClass]);
 }
 
-- (void)colorPanelWillClose:(NSNotification *)notification
-{
+- (void)colorPanelWillClose:(NSNotification *)notification {
     NSColorPanel *panel = [NSColorPanel sharedColorPanel];
     if (panel == notification.object) {
         panel.target = nil;
@@ -303,8 +348,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 }
 
-- (NSRange)lineRange
-{
+- (NSRange)lineRange {
     NSRange selectedRange = [[self textView] selectedRange];
     NSCharacterSet *newlineSet = [NSCharacterSet characterSetWithCharactersInString:@"\n"];
     NSUInteger location = ([[[self textView] string] rangeOfCharacterFromSet:newlineSet
@@ -325,8 +369,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     return NSMakeRange(location, length - 1);
 }
 
-- (NSString *)contentsOfRange:(NSRange)range
-{
+- (NSString *)contentsOfRange:(NSRange)range {
     if (range.location + range.length > [[[self textView] string] length]) {
         return @"";
     } else {
