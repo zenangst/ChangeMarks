@@ -10,6 +10,12 @@ Change marks can be manually cleared of via a keyboard shortcut and are not pers
 - Clear change marks
 - Configure the change mark color
 
+## Planned features
+
+- Navigate between changes
+- Restore changes between sessions
+- Load changes from Git
+
 #### Install via Alcatraz
 
 * Install plugin and restart Xcode.
