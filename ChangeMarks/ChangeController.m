@@ -10,20 +10,19 @@
 
 @interface ChangeController ()
 
-@property (nonatomic) NSMutableDictionary *changes;
+@property (atomic) NSMutableDictionary *changes;
 
 @end
 
 @implementation ChangeController
 
-#pragma mark - Getters
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
 
-- (NSMutableDictionary *)changes {
-    if (_changes) return _changes;
+    self.changes = [NSMutableDictionary new];
 
-    _changes = [NSMutableDictionary new];
-
-    return _changes;
+    return self;
 }
 
 #pragma mark - Public methods
