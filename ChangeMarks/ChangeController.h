@@ -11,7 +11,8 @@
 
 @interface ChangeController : NSObject
 
-- (void)addChange:(ChangeModel *)model;
+- (void)addChange:(ChangeModel *)change;
+- (void)removeChange:(ChangeModel *)change;
 - (NSArray *)changesForDocument:(NSString *)path;
 - (void)clearChangeMarks:(NSString *)path;
 

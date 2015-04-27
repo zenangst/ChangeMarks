@@ -10,8 +10,9 @@
 
 @implementation ChangeModel
 
-+ (ChangeModel *)withRange:(NSRange)range documentPath:(NSString *)documentPath {
+#pragma mark - Class methods
 
++ (ChangeModel *)withRange:(NSRange)range documentPath:(NSString *)documentPath {
     ChangeModel *model = [ChangeModel new];
 
     model.location = range.location;
@@ -21,8 +22,22 @@
     return model;
 }
 
+#pragma mark - Public method
+
 - (NSRange)range {
     return NSMakeRange(self.location, self.length);
+}
+
+- (BOOL)isValidInRange:(NSRange)range {
+
+    NSRange intersection = NSIntersectionRange([self range], range);
+
+    if (intersection.location == self.location &&
+        intersection.length == self.length) {
+        return YES;
+    }
+
+    return NO;
 }
 
 @end

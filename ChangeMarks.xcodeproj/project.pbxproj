@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD246E721AD19673000E683A /* NSTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */; };
 		BD36E9C91AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */; };
+		BD45ECCC1AEEB37000C60F15 /* ChangeModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD45ECCB1AEEB37000C60F15 /* ChangeModelTests.m */; };
 		BD66253A1AED5708001DB8AD /* ChangeMarksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6625391AED5708001DB8AD /* ChangeMarksTests.m */; };
 		BD66253E1AED5808001DB8AD /* ChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D751AED568E005D3268 /* ChangeModel.m */; };
 		BD66253F1AED5808001DB8AD /* ChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDBF7D621AED55E1005D3268 /* ChangeController.m */; };
@@ -29,6 +30,7 @@
 		BD246E711AD19673000E683A /* NSTextStorage+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextStorage+ChangeMarks.m"; sourceTree = "<group>"; };
 		BD36E9C71AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorage+ChangeMarks.h"; sourceTree = "<group>"; };
 		BD36E9C81AD2FBC200B7BB63 /* DVTTextStorage+ChangeMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextStorage+ChangeMarks.m"; sourceTree = "<group>"; };
+		BD45ECCB1AEEB37000C60F15 /* ChangeModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeModelTests.m; sourceTree = "<group>"; };
 		BD50BC901ACD85DE008B439B /* DVTCompletingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTCompletingTextView.h; sourceTree = "<group>"; };
 		BD50BC911ACD85DE008B439B /* DVTCompletingTextViewDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTCompletingTextViewDelegate-Protocol.h"; sourceTree = "<group>"; };
 		BD50BC921ACD85DE008B439B /* DVTFontAndColorTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFontAndColorTheme.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				BD6625391AED5708001DB8AD /* ChangeMarksTests.m */,
 				BD6625371AED5708001DB8AD /* Supporting Files */,
+				BD45ECCB1AEEB37000C60F15 /* ChangeModelTests.m */,
 			);
 			path = ChangeMarksTests;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				BD66253E1AED5808001DB8AD /* ChangeModel.m in Sources */,
 				BD66253F1AED5808001DB8AD /* ChangeController.m in Sources */,
 				BD66253A1AED5708001DB8AD /* ChangeMarksTests.m in Sources */,
+				BD45ECCC1AEEB37000C60F15 /* ChangeModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
