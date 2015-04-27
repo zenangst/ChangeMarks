@@ -77,6 +77,12 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                  name:kChangeMarkFirstResponderChanged
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(firstResponderChanged:)
+                                                 name:NSWindowDidBecomeKeyNotification
+                                               object:nil];
+
+
     return self;
 }
 
