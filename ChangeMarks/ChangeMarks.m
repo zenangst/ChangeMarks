@@ -312,7 +312,12 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         NSArray *changes = [self.changeController changesForDocument:documenthPath];
         if (changes.count > 0) {
             for (ChangeModel *change in changes) {
-                [self colorBackgroundWithRange:change.range];
+                NSUInteger documentLength = [[[self textView] string] length];
+                if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
+                    [self colorBackgroundWithRange:change.range];
+                } else {
+                    [self.changeController removeChange:change];
+                }
             }
         }
     }

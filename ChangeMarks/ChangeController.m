@@ -54,6 +54,11 @@
     }
 }
 
+- (void)removeChange:(ChangeModel *)change {
+    NSMutableArray *changes = self.changes[change.documentPath];
+    [changes removeObject:change];
+}
+
 - (NSArray *)changesForDocument:(NSString *)path {
     return self.changes[path];
 }

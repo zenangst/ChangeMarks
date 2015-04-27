@@ -17,5 +17,6 @@
 + (ChangeModel *)withRange:(NSRange)range documentPath:(NSString *)documentPath;
 
 - (NSRange)range;
+- (BOOL)isValidInRange:(NSRange)range;
 
 @end
