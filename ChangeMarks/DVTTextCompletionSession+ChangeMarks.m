@@ -12,6 +12,19 @@
 
 @implementation DVTTextCompletionSession (ChangeMarks)
 
++ (void)load {
+    Method original, swizzle;
+
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"handleTextViewShouldChangeTextInRange:replacementString:"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_handleTextViewShouldChangeTextInRange:replacementString:"));
+    method_exchangeImplementations(original, swizzle);
+
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"insertCurrentCompletion"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_insertCurrentCompletion"));
+    method_exchangeImplementations(original, swizzle);
+
+}
+
 - (BOOL)zen_handleTextViewShouldChangeTextInRange:(struct _NSRange)arg1 replacementString:(id)arg2 {
     long long selectedCompletionIndex = [self selectedCompletionIndex];
     NSArray *filteredCompletions = [self filteredCompletionsAlpha];
@@ -47,19 +60,6 @@
     }
 
     return [self zen_insertCurrentCompletion];
-}
-
-+ (void)load {
-    Method original, swizzle;
-
-    original = class_getInstanceMethod(self, NSSelectorFromString(@"handleTextViewShouldChangeTextInRange:replacementString:"));
-    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_handleTextViewShouldChangeTextInRange:replacementString:"));
-    method_exchangeImplementations(original, swizzle);
-
-    original = class_getInstanceMethod(self, NSSelectorFromString(@"insertCurrentCompletion"));
-    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_insertCurrentCompletion"));
-    method_exchangeImplementations(original, swizzle);
-
 }
 
 @end
