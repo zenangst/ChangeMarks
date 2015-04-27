@@ -182,9 +182,12 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (NSString *)currentDocumentPath
 {
     IDESourceCodeEditor *editor = [self currentEditor];
-    id document = [editor sourceCodeDocument];
-
-    return [[document fileURL] absoluteString];
+    if ([editor respondsToSelector:NSSelectorFromString(@"sourceCodeDocument")]) {
+        id document = [editor sourceCodeDocument];
+        return [[document fileURL] absoluteString];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - Actions
@@ -280,7 +283,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 - (void)firstResponderChanged:(NSNotification *)notification {
-
     if (![self.lastResponder isEqual:notification.object]) {
         [self clearChangeMarks];
         [self restoreChanges];
@@ -301,14 +303,18 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
         [self.changeController addChange:[ChangeModel withRange:range
                                                    documentPath:[self currentDocumentPath]]];
+        NSLog(@"changecount: %ld", [[self.changeController changesForDocument:[self currentDocumentPath]] count]);
     }
 }
 
 - (void)restoreChanges {
-    NSArray *changes = [self.changeController changesForDocument:[self currentDocumentPath]];
-    if (changes) {
-        for (ChangeModel *change in changes) {
-            [self colorBackgroundWithRange:change.range];
+    NSString *documenthPath = [self currentDocumentPath];
+    if (documenthPath != nil) {
+        NSArray *changes = [self.changeController changesForDocument:documenthPath];
+        if (changes.count > 0) {
+            for (ChangeModel *change in changes) {
+                [self colorBackgroundWithRange:change.range];
+            }
         }
     }
 }
