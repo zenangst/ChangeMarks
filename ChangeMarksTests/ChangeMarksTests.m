@@ -36,6 +36,7 @@
 
 - (void)testChangeIntersect {
     ChangeController *controller = [ChangeController new];
+
     NSRange range1 = NSMakeRange(100, 20);
     NSRange range2 = NSMakeRange(45,10);
     NSRange range3 = NSMakeRange(105,30);
@@ -52,6 +53,21 @@
     ChangeModel *firstModel = changes.firstObject;
     XCTAssertTrue(firstModel.location == 100);
     XCTAssertTrue(firstModel.length == 35);
+}
+
+- (void)testAppendingChange {
+    ChangeController *controller = [ChangeController new];
+
+    NSRange range1 = NSMakeRange(1, 1);
+    NSRange range2 = NSMakeRange(2, 1);
+    NSRange range3 = NSMakeRange(2, 1);
+
+    [controller addChange:[ChangeModel withRange:range1 documentPath:@""]];
+    [controller addChange:[ChangeModel withRange:range2 documentPath:@""]];
+    [controller addChange:[ChangeModel withRange:range3 documentPath:@""]];
+
+	NSMutableArray *changes = controller.changes[@""];
+    XCTAssertTrue(changes.count == 1);
 }
 
 @end

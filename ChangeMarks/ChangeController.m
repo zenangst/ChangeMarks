@@ -65,20 +65,34 @@
 #pragma mark - Private methods
 
 - (ChangeModel *)intersect:(ChangeModel *)change {
-
     NSArray *documentChanges = self.changes[change.documentPath];
+    ChangeModel *foundChange;
+
     for (ChangeModel *oldChange in documentChanges) {
         NSRange a = [change range];
         NSRange b = [oldChange range];
         NSRange intersection = NSIntersectionRange(a, b);
-
         if (intersection.location > 0 &&
             intersection.length > 0) {
-            return oldChange;
+            foundChange = oldChange;
+        } else {
+            a.location -= 1;
+            intersection = NSIntersectionRange(a, b);
+            if (intersection.location > 0 &&
+                intersection.length > 0) {
+                foundChange = oldChange;
+            }
+
+            a.location -= 1;
+            intersection = NSIntersectionRange(a, b);
+            if (intersection.location > 0 &&
+                intersection.length > 0) {
+                foundChange = oldChange;
+            }
         }
     }
 
-    return nil;
+    return foundChange;
 }
 
 @end
