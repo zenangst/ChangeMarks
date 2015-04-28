@@ -48,7 +48,7 @@
     [controller addChange:[ChangeModel withRange:range4 documentPath:@""]];
 
     NSMutableArray *changes = controller.changes[@""];
-    XCTAssertEqual(controller.changes.count, 2);
+    XCTAssertEqual(changes.count, 2);
 
     ChangeModel *firstModel = changes.firstObject;
     XCTAssertEqual(firstModel.location, 100);
