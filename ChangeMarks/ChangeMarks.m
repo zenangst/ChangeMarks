@@ -122,7 +122,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         })];
 
         [pluginMenu addItem:({
-            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Next Change Marks"
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Next Change Mark"
                                                               action:@selector(nextChangeMark)
                                                        keyEquivalent:@""];
             menuItem.target = self;
@@ -130,7 +130,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         })];
 
         [pluginMenu addItem:({
-            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Previous Change Marks"
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Previous Change Mark"
                                                               action:@selector(previousChangeMark)
                                                        keyEquivalent:@""];
             menuItem.target = self;
