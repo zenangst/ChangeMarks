@@ -13,7 +13,14 @@
 
 - (void)addChange:(ChangeModel *)change;
 - (void)removeChange:(ChangeModel *)change;
-- (NSArray *)changesForDocument:(NSString *)path;
 - (void)clearChangeMarks:(NSString *)path;
+- (void)adjustChangeMarksWithRange:(NSRange)range
+                         withDelta:(NSInteger)delta
+                  withDocumentPath:(NSString *)path;
+
+- (NSRange)nextChange:(NSRange)range documentPath:(NSString *)string;
+- (NSRange)previousChange:(NSRange)range  documentPath:(NSString *)string;
+
+- (NSArray *)changesForDocument:(NSString *)path;
 
 @end

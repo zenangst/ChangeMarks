@@ -11,5 +11,6 @@
 static NSString *const kChangeMarkAddNotification = @"kChangeMarkAddChangeMarkNotification";
 static NSString *const kChangeMarkAddRangeNotification = @"kChangeMarkAddChangeMarkRangeNotification";
 static NSString *const kChangeMarkFirstResponderChanged = @"kChangeMarkFirstResponderChanged";
+static NSString *const kChangeMarkRemovedCharacters = @"kChangeMarkRemovedCharacters";
 
 static const CGFloat kChangeMarkTiming = 0.0f;

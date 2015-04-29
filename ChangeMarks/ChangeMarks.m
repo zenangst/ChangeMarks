@@ -24,6 +24,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSString *lastInsertedString;
 @property (nonatomic) ChangeController *changeController;
 @property (nonatomic) id lastResponder;
+@property (nonatomic) NSDictionary *lastChange;
 
 @end
 
@@ -82,6 +83,11 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                  name:NSWindowDidBecomeKeyNotification
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removedCharacters:)
+                                                 name:kChangeMarkRemovedCharacters
+                                               object:nil];
+
 
     return self;
 }
@@ -116,6 +122,22 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         [pluginMenu addItem:({
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Clear Change Marks"
                                                               action:@selector(clearChangeMarksAction)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
+
+        [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Next Change Mark"
+                                                              action:@selector(nextChangeMark)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
+
+        [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Previous Change Mark"
+                                                              action:@selector(previousChangeMark)
                                                        keyEquivalent:@""];
             menuItem.target = self;
             menuItem;
@@ -197,6 +219,24 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 #pragma mark - Actions
+
+- (void)nextChangeMark {
+    NSString *documentPath = [self currentDocumentPath];
+    NSRange selectedRange = [[self textView] selectedRange];
+
+    NSRange newRange = [self.changeController nextChange:selectedRange documentPath:documentPath];
+
+    [[self textView] setSelectedRange:newRange];
+}
+
+- (void)previousChangeMark {
+    NSString *documentPath = [self currentDocumentPath];
+    NSRange selectedRange = [[self textView] selectedRange];
+
+    NSRange newRange = [self.changeController previousChange:selectedRange documentPath:documentPath];
+
+    [[self textView] setSelectedRange:newRange];
+}
 
 - (void)clearChangeMarksAction {
     [self clearChangeMarks];
@@ -280,11 +320,30 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)addChangeMarkRange:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
+        if ([self.lastChange isEqual:notification.object]) {
+            return;
+        }
+
         NSDictionary *dictionary = (NSDictionary *)notification.object;
         NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
+
+        self.lastChange = notification.object;
+    }
+}
+
+- (void)removedCharacters:(NSNotification *)notification {
+    if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)notification.object;
+        NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
+                                    [dictionary[@"length"] integerValue]);
+        NSInteger delta = [dictionary[@"delta"] integerValue];
+
+        [self.changeController adjustChangeMarksWithRange:range
+                                                withDelta:delta
+                                         withDocumentPath:[self currentDocumentPath]];
     }
 }
 
@@ -315,7 +374,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)restoreChanges {
     NSString *documenthPath = [self currentDocumentPath];
     if (documenthPath != nil) {
-        NSArray *changes = [self.changeController changesForDocument:documenthPath];
+        NSArray *changes = [[self.changeController changesForDocument:documenthPath] copy];
         if (changes.count > 0) {
             for (ChangeModel *change in changes) {
                 NSUInteger documentLength = [[[self textView] string] length];

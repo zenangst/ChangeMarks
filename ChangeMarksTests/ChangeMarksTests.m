@@ -31,7 +31,7 @@
     [controller addChange:[ChangeModel withRange:range1 documentPath:@""]];
     [controller addChange:[ChangeModel withRange:range2 documentPath:@""]];
 
-    XCTAssertTrue(controller.changes.count == 1);
+    XCTAssertEqual(controller.changes.count, 1);
 }
 
 - (void)testChangeIntersect {
@@ -48,11 +48,11 @@
     [controller addChange:[ChangeModel withRange:range4 documentPath:@""]];
 
     NSMutableArray *changes = controller.changes[@""];
-    XCTAssertTrue(changes.count == 2);
+    XCTAssertEqual(changes.count, 2);
 
     ChangeModel *firstModel = changes.firstObject;
-    XCTAssertTrue(firstModel.location == 100);
-    XCTAssertTrue(firstModel.length == 35);
+    XCTAssertEqual(firstModel.location, 100);
+    XCTAssertEqual(firstModel.length, 35);
 }
 
 - (void)testAppendingChange {
@@ -67,7 +67,7 @@
     [controller addChange:[ChangeModel withRange:range3 documentPath:@""]];
 
 	NSMutableArray *changes = controller.changes[@""];
-    XCTAssertTrue(changes.count == 1);
+    XCTAssertEqual(controller.changes.count, 1);
 }
 
 @end
