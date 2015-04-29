@@ -21,15 +21,23 @@
 }
 
 - (void)zen_edited:(NSUInteger)editedMask range:(NSRange)range changeInLength:(NSInteger)delta {
-    if (range.location > 0 && range.length > 1 && delta > 0) {
-        NSDictionary *rangeDictionary = @{@"location":@(range.location),
-                                          @"length":@(range.length)};
+    NSDictionary *rangeDictionary = @{@"location":@(range.location),
+                                      @"length":@(range.length),
+                                      @"delta":@(delta)};
 
+    if (range.location > 0 && range.length > 0 && delta >= 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarkTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddNotification
+                                                                object:rangeDictionary
+             ];
+        });
+    } else if (range.location > 0 && delta < 0 && editedMask == 2) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarkTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkRemovedCharacters
                                                                 object:rangeDictionary];
         });
     }
+
 
     [self zen_edited:editedMask
                range:range

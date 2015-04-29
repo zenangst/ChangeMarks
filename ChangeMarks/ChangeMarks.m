@@ -24,6 +24,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSString *lastInsertedString;
 @property (nonatomic) ChangeController *changeController;
 @property (nonatomic) id lastResponder;
+@property (nonatomic) NSDictionary *lastChange;
 
 @end
 
@@ -80,6 +81,11 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(firstResponderChanged:)
                                                  name:NSWindowDidBecomeKeyNotification
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removedCharacters:)
+                                                 name:kChangeMarkRemovedCharacters
                                                object:nil];
 
 
@@ -314,11 +320,30 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)addChangeMarkRange:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
+        if ([self.lastChange isEqual:notification.object]) {
+            return;
+        }
+
         NSDictionary *dictionary = (NSDictionary *)notification.object;
         NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
+
+        self.lastChange = notification.object;
+    }
+}
+
+- (void)removedCharacters:(NSNotification *)notification {
+    if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)notification.object;
+        NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
+                                    [dictionary[@"length"] integerValue]);
+        NSInteger delta = [dictionary[@"delta"] integerValue];
+
+        [self.changeController adjustChangeMarksWithRange:range
+                                                withDelta:delta
+                                         withDocumentPath:[self currentDocumentPath]];
     }
 }
 
