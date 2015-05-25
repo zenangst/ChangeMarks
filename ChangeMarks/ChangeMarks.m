@@ -25,6 +25,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) ChangeController *changeController;
 @property (nonatomic) id lastResponder;
 @property (nonatomic) NSDictionary *lastChange;
+@property (atomic) BOOL isRunning;
 
 @end
 
@@ -87,7 +88,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                              selector:@selector(removedCharacters:)
                                                  name:kChangeMarkRemovedCharacters
                                                object:nil];
-
 
     return self;
 }
@@ -367,16 +367,21 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                        value:color
                            forCharacterRange:range];
 
-        [self readChangesFromDocument];
+        if (self.isRunning == NO) {
+            self.isRunning = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self readChangesFromDocument];
+            });
+        }
     }
 }
 
 - (void)readChangesFromDocument {
     NSLayoutManager *layoutManager = [self.textView layoutManager];
-
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_sync(backgroundQueue, ^{
         [self.changeController clearChangeMarks:[self currentDocumentPath]];
+
         for (int i=0; i < [self.textView.string length]; i++) {
             NSDictionary *dictionary = [layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:NULL];
 
@@ -385,6 +390,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                                            documentPath:[self currentDocumentPath]]];
             }
         }
+
+        self.isRunning = NO;
     });
 }
 
