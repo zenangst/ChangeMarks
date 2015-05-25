@@ -373,14 +373,18 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)readChangesFromDocument {
     NSLayoutManager *layoutManager = [self.textView layoutManager];
-    for (int i=0; i < [self.textView.string length]; i++) {
-        NSDictionary *dictionary = [layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:NULL];
 
-        if (dictionary.count > 0 && dictionary[@"NSBackgroundColor"]) {
-            [self.changeController addChange:[ChangeModel withRange:NSMakeRange(i, 1)
-                                                       documentPath:[self currentDocumentPath]]];
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_sync(backgroundQueue, ^{
+        for (int i=0; i < [self.textView.string length]; i++) {
+            NSDictionary *dictionary = [layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:NULL];
+
+            if (dictionary.count > 0 && dictionary[@"NSBackgroundColor"]) {
+                [self.changeController addChange:[ChangeModel withRange:NSMakeRange(i, 1)
+                                                           documentPath:[self currentDocumentPath]]];
+            }
         }
-    }
+    });
 }
 
 - (void)restoreChanges {
@@ -392,8 +396,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
             for (ChangeModel *change in changes) {
                 NSUInteger documentLength = [[[self textView] string] length];
                 if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
-                    NSLog(@"colorBackgroundWithRange");
-                    NSLog(@"change.range: %ld, %ld", change.range.location, change.range.length);
                     [self colorBackgroundWithRange:change.range];
                 } else {
                     [self.changeController removeChange:change];
