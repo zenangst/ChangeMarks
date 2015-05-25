@@ -18,12 +18,12 @@
     swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_readSelectionFromPasteboard:"));
 
     method_exchangeImplementations(original, swizzle);
-//
-//    original = class_getInstanceMethod(self, NSSelectorFromString(@"insertText:"));
-//    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_insertText:"));
-//
-//    method_exchangeImplementations(original, swizzle);
-//
+
+    original = class_getInstanceMethod(self, NSSelectorFromString(@"insertText:"));
+    swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_insertText:"));
+
+    method_exchangeImplementations(original, swizzle);
+
     original = class_getInstanceMethod(self, NSSelectorFromString(@"becomeFirstResponder"));
     swizzle = class_getInstanceMethod(self, NSSelectorFromString(@"zen_becomeFirstResponder"));
 
