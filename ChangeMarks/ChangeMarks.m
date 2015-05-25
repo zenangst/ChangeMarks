@@ -26,6 +26,8 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) id lastResponder;
 @property (nonatomic) NSDictionary *lastChange;
 
+@property (nonatomic) NSDictionary *changes;
+
 @end
 
 @implementation ChangeMarks
@@ -366,8 +368,19 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                        value:color
                            forCharacterRange:range];
 
-        [self.changeController addChange:[ChangeModel withRange:range
-                                                   documentPath:[self currentDocumentPath]]];
+        [self readChangesFromDocument];
+    }
+}
+
+- (void)readChangesFromDocument {
+    NSLayoutManager *layoutManager = [self.textView layoutManager];
+    for (int i=0; i < [self.textView.string length]; i++) {
+        NSDictionary *dictionary = [layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:NULL];
+
+        if (dictionary.count > 0 && dictionary[@"NSBackgroundColor"]) {
+            [self.changeController addChange:[ChangeModel withRange:NSMakeRange(i, 1)
+                                                       documentPath:[self currentDocumentPath]]];
+        }
     }
 }
 
@@ -375,10 +388,13 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     NSString *documenthPath = [self currentDocumentPath];
     if (documenthPath != nil) {
         NSArray *changes = [[self.changeController changesForDocument:documenthPath] copy];
+
         if (changes.count > 0) {
             for (ChangeModel *change in changes) {
                 NSUInteger documentLength = [[[self textView] string] length];
                 if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
+                    NSLog(@"colorBackgroundWithRange");
+                    NSLog(@"change.range: %ld, %ld", change.range.location, change.range.length);
                     [self colorBackgroundWithRange:change.range];
                 } else {
                     [self.changeController removeChange:change];
