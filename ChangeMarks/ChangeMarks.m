@@ -26,8 +26,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) id lastResponder;
 @property (nonatomic) NSDictionary *lastChange;
 
-@property (nonatomic) NSDictionary *changes;
-
 @end
 
 @implementation ChangeMarks
