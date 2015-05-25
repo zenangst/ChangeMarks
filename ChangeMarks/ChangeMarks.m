@@ -376,6 +376,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_sync(backgroundQueue, ^{
+        [self.changeController clearChangeMarks:[self currentDocumentPath]];
         for (int i=0; i < [self.textView.string length]; i++) {
             NSDictionary *dictionary = [layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:NULL];
 
