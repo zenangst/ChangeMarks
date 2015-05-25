@@ -362,6 +362,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     if (self.enabledMenuItem.state == 1 && [self validResponder]) {
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
+
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
