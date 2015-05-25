@@ -391,16 +391,18 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     NSString *documenthPath = [self currentDocumentPath];
     if (documenthPath != nil) {
         NSArray *changes = [[self.changeController changesForDocument:documenthPath] copy];
-
         if (changes.count > 0) {
-            for (ChangeModel *change in changes) {
-                NSUInteger documentLength = [[[self textView] string] length];
-                if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
-                    [self colorBackgroundWithRange:change.range];
-                } else {
-                    [self.changeController removeChange:change];
+            dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+            dispatch_sync(backgroundQueue, ^{
+                for (ChangeModel *change in changes) {
+                    NSUInteger documentLength = [[[self textView] string] length];
+                    if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
+                        [self colorBackgroundWithRange:change.range];
+                    } else {
+                        [self.changeController removeChange:change];
+                    }
                 }
-            }
+            });
         }
     }
 }
