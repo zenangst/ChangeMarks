@@ -62,7 +62,10 @@
 }
 
 - (void)clearChangeMarks:(NSString *)path {
-    [self.changes removeObjectForKey:path];
+    if (self.changes[path]) {
+        [self.changes removeObjectForKey:path];
+    }
+
 }
 
 - (NSRange)nextChange:(NSRange)range documentPath:(NSString *)string {
