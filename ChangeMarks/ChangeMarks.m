@@ -23,7 +23,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSColor *changeMarkColor;
 @property (nonatomic) NSString *lastInsertedString;
 @property (nonatomic) ChangeController *changeController;
-@property (nonatomic) id lastResponder;
 @property (atomic) BOOL isRunning;
 
 @end
@@ -331,19 +330,17 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)removedCharacters:(NSNotification *)notification {
     if (self.isRunning == NO) {
-        [self readChangesFromDocument:nil];
+        [self readChangesFromDocument:[self currentDocumentPath]
+                           completion:nil];
     }
 }
 
 - (void)firstResponderChanged:(NSNotification *)notification {
-    if (![self.lastResponder isEqual:notification.object]) {
-        [self readChangesFromDocument:^{
-            [self clearChangeMarks];
-            [self restoreChanges];
-        }];
-    }
-
-    self.lastResponder = notification.object;
+    [self readChangesFromDocument:[self currentDocumentPath]
+                       completion:^{
+                           [self clearChangeMarks];
+                           [self restoreChanges];
+                       }];
 }
 
 #pragma mark - Private methods
@@ -360,18 +357,19 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         if (self.isRunning == NO) {
             self.isRunning = YES;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self readChangesFromDocument:nil];
+                [self readChangesFromDocument:[self currentDocumentPath]
+                                   completion:nil];
             });
         }
     }
 }
 
-- (void)readChangesFromDocument:(void (^)(void))completion {
+- (void)readChangesFromDocument:(NSString *)documentPath completion:(void (^)(void))completion {
     NSLayoutManager *layoutManager = [self.textView layoutManager];
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_sync(backgroundQueue, ^{
         if (self.enabledMenuItem.state == 1) {
-            [self.changeController clearChangeMarks:[self currentDocumentPath]];
+            [self.changeController clearChangeMarks:documentPath];
         }
 
         for (int i=0; i < [self.textView.string length]; i++) {
@@ -379,7 +377,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
             if (dictionary.count > 0 && dictionary[@"NSBackgroundColor"]) {
                 [self.changeController addChange:[ChangeModel withRange:NSMakeRange(i, 1)
-                                                           documentPath:[self currentDocumentPath]]];
+                                                           documentPath:documentPath]];
             }
         }
 
