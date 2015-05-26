@@ -261,7 +261,9 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 - (void)toggleChangeMarks {
-    [self clearChangeMarks];
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
+    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                          forCharacterRange:NSMakeRange(0,[[[self textView] string] length])];
 
     self.enabledMenuItem.state = (self.enabledMenuItem.state == 1) ? 0 : 1;
 
