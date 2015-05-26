@@ -25,12 +25,10 @@
                                       @"length":@(range.length),
                                       @"delta":@(delta)};
 
-    if (range.location > 0 && range.length > 0 && editedMask != 2) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarkTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddNotification
-                                                                object:rangeDictionary
-             ];
-        });
+    if (range.location > 0 && range.length > 0 && delta > 0 && editedMask != 2) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkAddNotification
+                                                            object:rangeDictionary
+         ];
     } else if (range.location > 0 && delta < 0 && editedMask == 2) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kChangeMarkTiming * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:kChangeMarkRemovedCharacters
