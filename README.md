@@ -1,7 +1,5 @@
 ## Change Marks
 
-### Work in progress
-
 <img src="https://raw.githubusercontent.com/zenangst/ChangeMarks/master/screenshot.png">
 
 Change Marks helps you to keep track of your most recent changes by giving them a different background color.
