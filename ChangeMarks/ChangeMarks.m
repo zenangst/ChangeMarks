@@ -25,6 +25,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) ChangeController *changeController;
 @property (nonatomic) id lastResponder;
 @property (nonatomic) NSDictionary *lastChange;
+@property (atomic) BOOL isRunning;
 
 @end
 
@@ -87,7 +88,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                                              selector:@selector(removedCharacters:)
                                                  name:kChangeMarkRemovedCharacters
                                                object:nil];
-
 
     return self;
 }
@@ -261,7 +261,9 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 - (void)toggleChangeMarks {
-    [self clearChangeMarks];
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
+    [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                          forCharacterRange:NSMakeRange(0,[[[self textView] string] length])];
 
     self.enabledMenuItem.state = (self.enabledMenuItem.state == 1) ? 0 : 1;
 
@@ -335,22 +337,17 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 - (void)removedCharacters:(NSNotification *)notification {
-    if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dictionary = (NSDictionary *)notification.object;
-        NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
-                                    [dictionary[@"length"] integerValue]);
-        NSInteger delta = [dictionary[@"delta"] integerValue];
-
-        [self.changeController adjustChangeMarksWithRange:range
-                                                withDelta:delta
-                                         withDocumentPath:[self currentDocumentPath]];
+    if (self.isRunning == NO) {
+        [self readChangesFromDocument:nil];
     }
 }
 
 - (void)firstResponderChanged:(NSNotification *)notification {
     if (![self.lastResponder isEqual:notification.object]) {
-        [self clearChangeMarks];
-        [self restoreChanges];
+        [self readChangesFromDocument:^{
+            [self clearChangeMarks];
+            [self restoreChanges];
+        }];
     }
 
     self.lastResponder = notification.object;
@@ -362,13 +359,43 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     if (self.enabledMenuItem.state == 1 && [self validResponder]) {
         NSLayoutManager *layoutManager = [self.textView layoutManager];
         NSColor *color = self.changeMarkColor;
+
         [layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName
                                        value:color
                            forCharacterRange:range];
 
-        [self.changeController addChange:[ChangeModel withRange:range
-                                                   documentPath:[self currentDocumentPath]]];
+        if (self.isRunning == NO) {
+            self.isRunning = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self readChangesFromDocument:nil];
+            });
+        }
     }
+}
+
+- (void)readChangesFromDocument:(void (^)(void))completion {
+    NSLayoutManager *layoutManager = [self.textView layoutManager];
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_sync(backgroundQueue, ^{
+        if (self.enabledMenuItem.state == 1) {
+            [self.changeController clearChangeMarks:[self currentDocumentPath]];
+        }
+
+        for (int i=0; i < [self.textView.string length]; i++) {
+            NSDictionary *dictionary = [layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:NULL];
+
+            if (dictionary.count > 0 && dictionary[@"NSBackgroundColor"]) {
+                [self.changeController addChange:[ChangeModel withRange:NSMakeRange(i, 1)
+                                                           documentPath:[self currentDocumentPath]]];
+            }
+        }
+
+        if (completion) {
+            completion();
+        }
+
+        self.isRunning = NO;
+    });
 }
 
 - (void)restoreChanges {
@@ -376,14 +403,17 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     if (documenthPath != nil) {
         NSArray *changes = [[self.changeController changesForDocument:documenthPath] copy];
         if (changes.count > 0) {
-            for (ChangeModel *change in changes) {
-                NSUInteger documentLength = [[[self textView] string] length];
-                if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
-                    [self colorBackgroundWithRange:change.range];
-                } else {
-                    [self.changeController removeChange:change];
+            dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+            dispatch_sync(backgroundQueue, ^{
+                for (ChangeModel *change in changes) {
+                    NSUInteger documentLength = [[[self textView] string] length];
+                    if ([change isValidInRange:NSMakeRange(0, documentLength)]) {
+                        [self colorBackgroundWithRange:change.range];
+                    } else {
+                        [self.changeController removeChange:change];
+                    }
                 }
-            }
+            });
         }
     }
 }
@@ -398,7 +428,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     }
 
     NSLayoutManager *layoutManager = [[self textView] layoutManager];
-
     [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
                           forCharacterRange:range];
 }

@@ -62,7 +62,9 @@
 }
 
 - (void)clearChangeMarks:(NSString *)path {
-    [self.changes removeObjectForKey:path];
+    if (self.changes[path]) {
+        [self.changes removeObjectForKey:path];
+    }
 }
 
 - (NSRange)nextChange:(NSRange)range documentPath:(NSString *)string {
@@ -81,11 +83,11 @@
 
 - (NSRange)previousChange:(NSRange)range  documentPath:(NSString *)string {
     NSArray *changes = [self.changes[string] copy];
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"location" ascending:YES];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"location" ascending:NO];
     NSArray *sortedArray = [changes sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 
     for (ChangeModel *change in sortedArray) {
-        if (change.location > range.location) {
+        if (change.location < range.location) {
             return change.range;
         }
     }
@@ -95,21 +97,6 @@
 
 - (NSArray *)changesForDocument:(NSString *)path {
     return self.changes[path];
-}
-
-- (void)adjustChangeMarksWithRange:(NSRange)range
-                         withDelta:(NSInteger)delta
-                  withDocumentPath:(NSString *)path {
-    NSArray *documentChanges = [self.changes[path] copy];
-    if (documentChanges) {
-        for (ChangeModel *change in documentChanges) {
-            if (change.location >= range.location) {
-                change.location += delta;
-            }
-        }
-
-        self.changes[path] = documentChanges;
-    }
 }
 
 #pragma mark - Private methods
@@ -126,13 +113,6 @@
             intersection.length > 0) {
             foundChange = oldChange;
         } else {
-            a.location -= 1;
-            intersection = NSIntersectionRange(a, b);
-            if (intersection.location > 0 &&
-                intersection.length > 0) {
-                foundChange = oldChange;
-            }
-
             a.location -= 1;
             intersection = NSIntersectionRange(a, b);
             if (intersection.location > 0 &&
