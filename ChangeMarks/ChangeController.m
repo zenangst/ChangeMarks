@@ -65,7 +65,6 @@
     if (self.changes[path]) {
         [self.changes removeObjectForKey:path];
     }
-
 }
 
 - (NSRange)nextChange:(NSRange)range documentPath:(NSString *)string {
