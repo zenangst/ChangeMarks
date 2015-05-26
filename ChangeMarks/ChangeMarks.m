@@ -24,7 +24,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 @property (nonatomic) NSString *lastInsertedString;
 @property (nonatomic) ChangeController *changeController;
 @property (nonatomic) id lastResponder;
-@property (nonatomic) NSDictionary *lastChange;
 @property (atomic) BOOL isRunning;
 
 @end
@@ -322,17 +321,11 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)addChangeMarkRange:(NSNotification *)notification {
     if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
-        if ([self.lastChange isEqual:notification.object]) {
-            return;
-        }
-
         NSDictionary *dictionary = (NSDictionary *)notification.object;
         NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
                                     [dictionary[@"length"] integerValue]);
 
         [self colorBackgroundWithRange:range];
-
-        self.lastChange = notification.object;
     }
 }
 
