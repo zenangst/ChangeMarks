@@ -225,6 +225,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     NSRange newRange = [self.changeController nextChange:selectedRange documentPath:documentPath];
 
     [[self textView] setSelectedRange:newRange];
+    [[self textView] scrollRangeToVisible:newRange];
 }
 
 - (void)previousChangeMark {
@@ -234,6 +235,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     NSRange newRange = [self.changeController previousChange:selectedRange documentPath:documentPath];
 
     [[self textView] setSelectedRange:newRange];
+    [[self textView] scrollRangeToVisible:newRange];
 }
 
 - (void)clearChangeMarksAction {
