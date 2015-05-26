@@ -9,10 +9,11 @@ Change marks can be manually cleared of via a keyboard shortcut and are not pers
 - Enable/disable change marks using keyboard shortcuts
 - Clear change marks
 - Configure the change mark color
+- Navigate between changes
+- Remove selected changes
 
 ## Planned features
 
-- Navigate between changes
 - Restore changes between sessions
 - Load changes from Git
 
