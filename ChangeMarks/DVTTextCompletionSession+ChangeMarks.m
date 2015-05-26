@@ -30,7 +30,6 @@
     NSArray *filteredCompletions = [self filteredCompletionsAlpha];
 
     if (filteredCompletions.count > selectedCompletionIndex) {
-
         NSDictionary *dictionary = @{@"location" : @([self wordStartLocation]),
                                      @"length"   : @([self cursorLocation] - [self wordStartLocation])};
 
