@@ -335,13 +335,17 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 - (void)removedCharacters:(NSNotification *)notification {
-    [self readChangesFromDocument];
+    if (self.isRunning == NO) {
+        [self readChangesFromDocument:nil];
+    }
 }
 
 - (void)firstResponderChanged:(NSNotification *)notification {
     if (![self.lastResponder isEqual:notification.object]) {
-        [self clearChangeMarks];
-        [self restoreChanges];
+        [self readChangesFromDocument:^{
+            [self clearChangeMarks];
+            [self restoreChanges];
+        }];
     }
 
     self.lastResponder = notification.object;
@@ -361,13 +365,13 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         if (self.isRunning == NO) {
             self.isRunning = YES;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self readChangesFromDocument];
+                [self readChangesFromDocument:nil];
             });
         }
     }
 }
 
-- (void)readChangesFromDocument {
+- (void)readChangesFromDocument:(void (^)(void))completion {
     NSLayoutManager *layoutManager = [self.textView layoutManager];
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_sync(backgroundQueue, ^{
@@ -382,6 +386,10 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
                 [self.changeController addChange:[ChangeModel withRange:NSMakeRange(i, 1)
                                                            documentPath:[self currentDocumentPath]]];
             }
+        }
+
+        if (completion) {
+            completion();
         }
 
         self.isRunning = NO;
