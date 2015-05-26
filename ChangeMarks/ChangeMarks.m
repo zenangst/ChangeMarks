@@ -427,7 +427,6 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     NSLayoutManager *layoutManager = [[self textView] layoutManager];
     [layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName
                           forCharacterRange:range];
-    [self readChangesFromDocument];
 }
 
 - (BOOL)validResponder {
