@@ -84,11 +84,11 @@
 
 - (NSRange)previousChange:(NSRange)range  documentPath:(NSString *)string {
     NSArray *changes = [self.changes[string] copy];
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"location" ascending:YES];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"location" ascending:NO];
     NSArray *sortedArray = [changes sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 
     for (ChangeModel *change in sortedArray) {
-        if (change.location > range.location) {
+        if (change.location < range.location) {
             return change.range;
         }
     }
