@@ -335,16 +335,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 }
 
 - (void)removedCharacters:(NSNotification *)notification {
-    if (notification.object && [notification.object isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dictionary = (NSDictionary *)notification.object;
-        NSRange range = NSMakeRange([dictionary[@"location"] integerValue],
-                                    [dictionary[@"length"] integerValue]);
-        NSInteger delta = [dictionary[@"delta"] integerValue];
-
-        [self.changeController adjustChangeMarksWithRange:range
-                                                withDelta:delta
-                                         withDocumentPath:[self currentDocumentPath]];
-    }
+    [self readChangesFromDocument];
 }
 
 - (void)firstResponderChanged:(NSNotification *)notification {

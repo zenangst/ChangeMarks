@@ -100,22 +100,6 @@
     return self.changes[path];
 }
 
-- (void)adjustChangeMarksWithRange:(NSRange)range
-                         withDelta:(NSInteger)delta
-                  withDocumentPath:(NSString *)path {
-
-//    NSArray *documentChanges = [self.changes[path] copy];
-//    if (documentChanges) {
-//        for (ChangeModel *change in documentChanges) {
-//            if (change.location >= range.location) {
-//                change.location += delta;
-//            }
-//        }
-//
-//        self.changes[path] = documentChanges;
-//    }
-}
-
 #pragma mark - Private methods
 
 - (ChangeModel *)intersect:(ChangeModel *)change {
