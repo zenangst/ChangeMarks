@@ -120,13 +120,6 @@
                 intersection.length > 0) {
                 foundChange = oldChange;
             }
-
-            a.location -= 1;
-            intersection = NSIntersectionRange(a, b);
-            if (intersection.location > 0 &&
-                intersection.length > 0) {
-                foundChange = oldChange;
-            }
         }
     }
 
