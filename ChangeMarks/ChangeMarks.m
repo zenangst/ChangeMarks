@@ -240,7 +240,13 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
 - (void)clearChangeMarksAction {
     [self clearChangeMarks];
-    [self.changeController clearChangeMarks:[self currentDocumentPath]];
+
+    if ([[self textView] selectedRange].length > 0) {
+        [self readChangesFromDocument:[self currentDocumentPath]
+                           completion:nil];
+    } else {
+        [self.changeController clearChangeMarks:[self currentDocumentPath]];
+    }
 }
 
 - (void)adjustColor:(id)sender {
