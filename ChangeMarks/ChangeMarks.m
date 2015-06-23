@@ -252,8 +252,7 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 - (void)adjustColor:(id)sender {
     NSColorPanel *panel = (NSColorPanel *)sender;
 
-    if ([[NSApp keyWindow] firstResponder] == self.textView &&
-        panel.color) {
+    if (panel.color) {
         NSData *colorData = [NSArchiver archivedDataWithRootObject:panel.color];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:colorData forKey:kChangeMarksColor];
