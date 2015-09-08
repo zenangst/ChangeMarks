@@ -118,6 +118,14 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         })];
 
         [pluginMenu addItem:({
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Add Change Mark"
+                                                              action:@selector(addChangeMarkAction)
+                                                       keyEquivalent:@""];
+            menuItem.target = self;
+            menuItem;
+        })];
+
+        [pluginMenu addItem:({
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Clear Change Marks"
                                                               action:@selector(clearChangeMarksAction)
                                                        keyEquivalent:@""];
@@ -236,6 +244,10 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
 
     [[self textView] setSelectedRange:newRange];
     [[self textView] scrollRangeToVisible:newRange];
+}
+
+- (void)addChangeMarkAction {
+    [self colorBackgroundWithRange:[[self textView] selectedRange]];
 }
 
 - (void)clearChangeMarksAction {
