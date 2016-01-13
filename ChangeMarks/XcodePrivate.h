@@ -101,6 +101,10 @@
 - (IDESourceCodeDocument *)sourceCodeDocument;
 @end
 
+@interface IDEComparisonEditor : NSObject
+@property(retain) IDEEditorDocument *primaryDocument;
+@end
+
 @interface IDEEditorContext : NSObject
 - (id)editor; // returns the current editor. If the editor is the code editor, the class is `IDESourceCodeEditor`
 @end
