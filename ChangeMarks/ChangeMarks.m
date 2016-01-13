@@ -219,6 +219,9 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
     if ([editor respondsToSelector:NSSelectorFromString(@"sourceCodeDocument")]) {
         id document = [editor sourceCodeDocument];
         return [[document fileURL] absoluteString];
+    } else if ([editor respondsToSelector:NSSelectorFromString(@"primaryDocument")]) {
+        id document = [(IDEComparisonEditor *)editor primaryDocument];
+        return [[document fileURL] absoluteString];
     } else {
         return nil;
     }
@@ -376,8 +379,10 @@ static NSString *const kChangeMarksColor = @"ChangeMarkColor";
         if (self.isRunning == NO) {
             self.isRunning = YES;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self readChangesFromDocument:[self currentDocumentPath]
-                                   completion:nil];
+                if ([self currentDocumentPath] != nil) {
+                    [self readChangesFromDocument:[self currentDocumentPath]
+                                       completion:nil];
+                }
             });
         }
     }
